@@ -4,112 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="Professioneller Baufinanzierungsrechner für Deutschland - 100% lokal, keine Datenübertragung">
-    <meta name="theme-color" content="#1e293b">
+    <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="FinanzPlaner">
     <meta name="format-detection" content="telephone=no">
 
-    <title>FinanzPlaner Pro | Baufinanzierungsrechner Deutschland</title>
+    <title>FinanzPlaner Pro | Baufinanzierungsrechner</title>
 
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22FinanzPlaner%20Pro%22%2C%22short_name%22%3A%22FinanzPlaner%22%2C%22description%22%3A%22Baufinanzierungsrechner%20Deutschland%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e293b%22%2C%22theme_color%22%3A%22%231e293b%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520fill%3D%27%25231e293b%27%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%2780%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27350%27%2520font-size%3D%27300%27%2520font-family%3D%27Arial%27%2520text-anchor%3D%27middle%27%2520fill%3D%27%252310b981%27%253E%25E2%2582%25AC%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231e293b' width='100' height='100' rx='15'/><text x='50' y='72' font-size='60' font-family='Arial' text-anchor='middle' fill='%2310b981'>€</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%231e293b' width='180' height='180' rx='30'/><text x='90' y='125' font-size='100' font-family='Arial' text-anchor='middle' fill='%2310b981'>€</text></svg>">
+    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22FinanzPlaner%20Pro%22%2C%22short_name%22%3A%22FinanzPlaner%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520fill%3D%27%25230f172a%27%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%2796%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27360%27%2520font-size%3D%27320%27%2520font-family%3D%27system-ui%27%2520text-anchor%3D%27middle%27%2520fill%3D%27%252310b981%27%253E%25E2%2582%25AC%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100' rx='18'/><text x='50' y='72' font-size='58' font-family='system-ui' text-anchor='middle' fill='%2310b981'>€</text></svg>">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary: #10b981;
+            --primary-light: #34d399;
             --primary-dark: #059669;
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --bg-card-hover: #334155;
-            --text-primary: #f1f5f9;
+            --accent: #6366f1;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             --border: #334155;
-            touch-action: manipulation;
         }
 
-        * {
-            -webkit-tap-highlight-color: transparent;
-            box-sizing: border-box;
-        }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-dark);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             min-height: 100dvh;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.01em;
         }
 
-        /* Professional Card Style */
+        /* Cards */
         .card {
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: border-color 0.2s ease;
+            border-radius: 16px;
         }
 
-        .card:hover {
-            border-color: var(--primary);
-        }
-
-        /* Slider - Clean Professional Style */
+        /* Slider */
         input[type=range] {
             -webkit-appearance: none;
-            appearance: none;
             width: 100%;
             height: 6px;
-            background: var(--border);
+            background: var(--bg-tertiary);
             border-radius: 3px;
             outline: none;
         }
 
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background: var(--primary);
             border-radius: 50%;
             cursor: pointer;
-            border: 3px solid var(--bg-card);
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
-            transition: transform 0.15s ease;
-        }
-
-        input[type=range]::-webkit-slider-thumb:active {
-            transform: scale(1.15);
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
         }
 
         input[type=range]::-moz-range-thumb {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background: var(--primary);
             border-radius: 50%;
             cursor: pointer;
-            border: 3px solid var(--bg-card);
+            border: none;
         }
 
         /* Select */
         select {
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             color: var(--text-primary);
             padding: 12px 40px 12px 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             width: 100%;
             appearance: none;
@@ -119,52 +103,33 @@
             background-size: 18px;
         }
 
-        select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
+        select:focus { outline: none; border-color: var(--primary); }
 
-        /* Toggle Switch */
-        .toggle {
-            position: relative;
-            width: 48px;
-            height: 26px;
-            flex-shrink: 0;
-        }
-
-        .toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
+        /* Toggle */
+        .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+        .toggle input { opacity: 0; width: 0; height: 0; }
         .toggle-track {
             position: absolute;
             inset: 0;
-            background: var(--border);
-            border-radius: 13px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
             cursor: pointer;
             transition: background 0.2s;
         }
-
         .toggle-track::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             left: 3px;
             top: 3px;
-            background: #64748b;
+            background: var(--text-muted);
             border-radius: 50%;
             transition: all 0.2s;
         }
-
-        .toggle input:checked + .toggle-track {
-            background: var(--primary);
-        }
-
+        .toggle input:checked + .toggle-track { background: var(--primary); }
         .toggle input:checked + .toggle-track::before {
-            transform: translateX(22px);
+            transform: translateX(20px);
             background: white;
         }
 
@@ -173,391 +138,325 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.15s ease;
-            cursor: pointer;
-            border: none;
-            touch-action: manipulation;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.97);
-        }
-
-        .btn-secondary {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--border);
-        }
-
-        /* Tab Navigation */
-        .tab-nav {
-            display: flex;
-            gap: 4px;
-            background: var(--bg-card);
-            padding: 4px;
-            border-radius: 10px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .tab-btn {
-            flex: 1;
-            min-width: max-content;
+            gap: 6px;
             padding: 10px 16px;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-weight: 600;
             font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            background: transparent;
+            transition: all 0.15s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: var(--bg-tertiary); color: var(--text-primary); }
+        .btn-secondary:hover { background: var(--border); }
+        .btn-sm { padding: 6px 12px; font-size: 12px; }
+
+        /* Pages */
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 8px 0;
+            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 600;
+            background: none;
             border: none;
             cursor: pointer;
-            transition: all 0.15s ease;
-            white-space: nowrap;
+            transition: color 0.15s;
+            letter-spacing: 0.02em;
         }
-
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .tab-btn:not(.active):hover {
-            background: var(--bg-card-hover);
-        }
-
-        /* Page Sections */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .nav-item.active { color: var(--primary); }
+        .nav-item svg { width: 24px; height: 24px; }
 
         /* Data Display */
-        .data-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-variant-numeric: tabular-nums;
+        .data-big { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
+        .data-medium { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+        .data-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+        /* Progress Ring */
+        .progress-ring { transform: rotate(-90deg); }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease;
+            stroke-linecap: round;
         }
 
-        .data-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        /* Table */
-        .data-table {
-            width: 100%;
-            font-size: 13px;
-        }
-
-        .data-table th {
-            text-align: left;
-            padding: 12px 8px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            background: var(--bg-card);
-        }
-
-        .data-table td {
-            padding: 10px 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Print Styles */
-        @media print {
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            body { background: white !important; color: #1e293b !important; padding: 20px !important; }
-            .no-print { display: none !important; }
-            .card { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; page-break-inside: avoid; margin-bottom: 15px !important; }
-            .print-only { display: block !important; }
-            .page { display: block !important; page-break-after: always; }
-            .data-value { color: #1e293b !important; }
-            .data-label { color: #64748b !important; }
-            #printSummary { display: block !important; }
-        }
-
-        .print-only { display: none; }
-
-        /* Safe Area for iOS */
-        @supports (padding: max(0px)) {
-            body {
-                padding-left: max(16px, env(safe-area-inset-left));
-                padding-right: max(16px, env(safe-area-inset-right));
-                padding-bottom: max(16px, env(safe-area-inset-bottom));
-            }
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--bg-card);
-            border: 1px solid var(--primary);
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.3s ease;
-            max-width: calc(100% - 32px);
-            text-align: center;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+        /* Gauge */
+        .gauge-bg { stroke: var(--bg-tertiary); }
+        .gauge-fill { transition: stroke-dashoffset 0.6s ease; stroke-linecap: round; }
 
         /* Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
             padding: 16px;
         }
-
-        .modal-overlay.show {
-            display: flex;
-        }
-
+        .modal-overlay.show { display: flex; }
         .modal {
-            background: var(--bg-card);
-            border-radius: 16px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
             width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
+            max-width: 440px;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
-        /* Info Badge */
-        .info-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 16px;
-            height: 16px;
-            background: var(--border);
-            color: var(--text-secondary);
-            border-radius: 50%;
-            font-size: 10px;
-            margin-left: 6px;
-            cursor: help;
-        }
-
-        /* Status Indicator */
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: statusPulse 2s infinite;
-        }
-
-        @keyframes statusPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        /* Bottom Navigation */
-        .bottom-nav {
+        /* Toast */
+        .toast {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            border-top: 1px solid var(--border);
-            padding: 8px 16px;
-            padding-bottom: max(8px, env(safe-area-inset-bottom));
-            display: flex;
-            justify-content: space-around;
-            z-index: 100;
-        }
-
-        .nav-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px 16px;
-            color: var(--text-secondary);
-            font-size: 11px;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            background: var(--bg-secondary);
+            border: 1px solid var(--primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
             font-weight: 500;
-            background: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* Install Button */
+        .install-btn {
+            display: none;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
             border: none;
             cursor: pointer;
-            transition: color 0.15s;
+            animation: pulse 2s infinite;
+        }
+        .install-btn.show { display: flex; align-items: center; gap: 4px; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); } }
+
+        /* Stat Card Gradient */
+        .stat-gradient {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        .nav-btn.active {
-            color: var(--primary);
+        /* Print */
+        @media print {
+            body { background: white !important; color: #1e293b !important; }
+            .no-print { display: none !important; }
+            .card { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+            .print-only { display: block !important; }
+        }
+        .print-only { display: none; }
+
+        /* Table */
+        .data-table { width: 100%; font-size: 13px; }
+        .data-table th { text-align: left; padding: 10px 8px; font-weight: 600; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
+        .data-table td { padding: 10px 8px; border-bottom: 1px solid var(--border); }
+
+        /* Comparison Cards */
+        .compare-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+        .compare-card.highlight {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
         }
 
-        .nav-btn svg {
-            width: 22px;
-            height: 22px;
+        /* Safe area */
+        @supports (padding: max(0px)) {
+            .main-content { padding-bottom: max(80px, calc(70px + env(safe-area-inset-bottom))); }
         }
     </style>
 </head>
-<body class="pb-20">
-    <!-- Toast Notification -->
+<body>
     <div id="toast" class="toast"></div>
 
     <!-- Import Modal -->
     <div id="importModal" class="modal-overlay">
-        <div class="modal p-6">
-            <h3 class="text-lg font-semibold mb-4">Konfiguration importieren</h3>
-            <textarea id="importData" class="w-full h-40 p-3 bg-slate-900 border border-slate-600 rounded-lg text-sm font-mono resize-none" placeholder="JSON-Daten hier einfügen..."></textarea>
+        <div class="modal p-5">
+            <h3 class="text-lg font-bold mb-4">JSON importieren</h3>
+            <textarea id="importData" class="w-full h-32 p-3 bg-slate-900 border border-slate-700 rounded-xl text-sm font-mono resize-none" placeholder="JSON hier einfügen..."></textarea>
             <div class="flex gap-3 mt-4">
-                <button onclick="closeImportModal()" class="btn btn-secondary flex-1">Abbrechen</button>
+                <button onclick="closeModal('importModal')" class="btn btn-secondary flex-1">Abbrechen</button>
                 <button onclick="importConfig()" class="btn btn-primary flex-1">Importieren</button>
             </div>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="max-w-2xl mx-auto px-4 py-6">
+    <!-- Datenschutz Modal -->
+    <div id="datenschutzModal" class="modal-overlay">
+        <div class="modal p-5 max-h-[80vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Datenschutz</h3>
+                <button onclick="closeModal('datenschutzModal')" class="text-slate-400 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="text-sm text-slate-300 space-y-3 overflow-y-auto">
+                <p><strong>Verantwortlicher:</strong><br>Belkis Aslani<br>Vogelsangstraße 32<br>71691 Freiberg am Neckar</p>
+                <p><strong>Datenverarbeitung:</strong> Diese App verarbeitet <u>keine personenbezogenen Daten auf Servern</u>. Alle Berechnungen erfolgen ausschließlich lokal in Ihrem Browser.</p>
+                <p><strong>Lokale Speicherung:</strong> Gespeicherte Daten verbleiben im localStorage Ihres Browsers und verlassen niemals Ihr Gerät.</p>
+                <p><strong>Keine Cookies:</strong> Diese Anwendung verwendet keine Cookies oder Tracking.</p>
+                <p><strong>Externe Ressourcen:</strong> Beim Laden werden Tailwind CSS, Chart.js und Google Fonts von CDNs geladen. Dabei kann Ihre IP-Adresse übertragen werden.</p>
+            </div>
+            <button onclick="closeModal('datenschutzModal')" class="btn btn-primary w-full mt-4">Schließen</button>
+        </div>
+    </div>
 
+    <!-- Impressum Modal -->
+    <div id="impressumModal" class="modal-overlay">
+        <div class="modal p-5">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Impressum</h3>
+                <button onclick="closeModal('impressumModal')" class="text-slate-400 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="text-sm text-slate-300 space-y-3">
+                <p><strong>Angaben gemäß § 5 TMG:</strong><br>Belkis Aslani<br>Vogelsangstraße 32<br>71691 Freiberg am Neckar<br>Deutschland</p>
+                <p><strong>Haftungsausschluss:</strong> Die Berechnungen dienen ausschließlich der unverbindlichen Information. Für Richtigkeit und Vollständigkeit wird keine Gewähr übernommen.</p>
+            </div>
+            <button onclick="closeModal('impressumModal')" class="btn btn-primary w-full mt-4">Schließen</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content max-w-lg mx-auto px-4 py-5">
         <!-- Header -->
-        <header class="mb-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-xl font-bold text-white">FinanzPlaner Pro</h1>
-                    <p class="text-xs text-slate-400 mt-0.5">Baufinanzierungsrechner Deutschland</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 text-emerald-400 text-xs rounded-full border border-emerald-500/20">
-                        <span class="status-dot"></span>
-                        Lokal
-                    </span>
+        <header class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-xl font-bold tracking-tight">FinanzPlaner<span class="text-emerald-400">Pro</span></h1>
+                <p class="text-[11px] text-slate-500 font-medium tracking-wide">BAUFINANZIERUNG DEUTSCHLAND</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="installBtn" class="install-btn" onclick="installPWA()">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    App
+                </button>
+                <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <span class="text-emerald-400 text-sm font-bold">€</span>
                 </div>
             </div>
         </header>
 
-        <!-- Tab Navigation -->
-        <nav class="tab-nav mb-6 no-print">
-            <button class="tab-btn active" data-page="rechner">Rechner</button>
-            <button class="tab-btn" data-page="nebenkosten">Nebenkosten</button>
-            <button class="tab-btn" data-page="vergleich">Vergleich</button>
-            <button class="tab-btn" data-page="daten">Speichern</button>
-        </nav>
-
-        <!-- Page: Rechner -->
+        <!-- PAGE: RECHNER -->
         <section id="page-rechner" class="page active space-y-4">
-            <!-- Quick Result Card -->
-            <div class="card p-5 border-l-4 border-l-emerald-500">
-                <p class="data-label">Monatliche Rate</p>
-                <p id="monthlyRate" class="data-value text-emerald-400">0,00 €</p>
-                <div class="flex items-center gap-4 mt-3 text-sm text-slate-400">
-                    <span>Darlehen: <strong id="loanAmount" class="text-white">0 €</strong></span>
+            <!-- Hero Card with Main Result -->
+            <div class="card p-5 stat-gradient">
+                <div class="flex items-start justify-between mb-4">
+                    <div>
+                        <p class="data-label mb-1">Monatliche Rate</p>
+                        <p id="monthlyRate" class="data-big text-emerald-400">0 €</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="data-label mb-1">Belastungsquote</p>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-12 h-12" viewBox="0 0 36 36">
+                                <path class="gauge-bg" fill="none" stroke-width="4" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path id="gaugeArc" class="gauge-fill" fill="none" stroke="#10b981" stroke-width="4" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <text id="gaugeText" x="18" y="22" text-anchor="middle" fill="#f8fafc" font-size="9" font-weight="700">0%</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-700/50">
+                    <div>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Darlehensbetrag</p>
+                        <p id="loanAmount" class="text-lg font-bold text-white">0 €</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Gesamtlaufzeit</p>
+                        <p id="totalYears" class="text-lg font-bold text-white">0 Jahre</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Input Card -->
+            <!-- Inputs -->
             <div class="card p-5 space-y-5">
-                <h2 class="font-semibold text-white">Finanzierungsparameter</h2>
-
-                <!-- Kaufpreis -->
                 <div>
                     <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Kaufpreis</label>
-                        <span id="displayKaufpreis" class="text-sm font-semibold text-emerald-400">300.000 €</span>
+                        <span class="text-sm text-slate-300 font-medium">Kaufpreis</span>
+                        <span id="dKaufpreis" class="text-sm font-bold text-emerald-400">300.000 €</span>
                     </div>
                     <input type="range" id="kaufpreis" min="50000" max="2000000" step="10000" value="300000">
-                    <div class="flex justify-between text-xs text-slate-500 mt-1">
-                        <span>50.000 €</span>
-                        <span>2.000.000 €</span>
-                    </div>
                 </div>
 
-                <!-- Eigenkapital -->
                 <div>
                     <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Eigenkapital</label>
-                        <span id="displayEigenkapital" class="text-sm font-semibold text-emerald-400">60.000 €</span>
+                        <span class="text-sm text-slate-300 font-medium">Eigenkapital</span>
+                        <span id="dEigenkapital" class="text-sm font-bold text-emerald-400">60.000 €</span>
                     </div>
                     <input type="range" id="eigenkapital" min="0" max="1000000" step="5000" value="60000">
-                    <p id="ekQuote" class="text-xs text-slate-500 mt-1">Eigenkapitalquote: 20%</p>
-                </div>
-
-                <!-- Sollzins -->
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Sollzins p.a.</label>
-                        <span id="displayRate" class="text-sm font-semibold text-emerald-400">3,50%</span>
+                    <div class="flex items-center justify-between mt-1">
+                        <span id="ekQuote" class="text-[11px] text-slate-500">Quote: 20%</span>
+                        <span id="ekStatus" class="text-[11px] text-emerald-400 font-medium">Optimal</span>
                     </div>
-                    <input type="range" id="rate" min="0.5" max="8" step="0.05" value="3.5">
                 </div>
 
-                <!-- Zinsbindung -->
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Zinsbindung</label>
-                        <span id="displayZinsbindung" class="text-sm font-semibold text-emerald-400">15 Jahre</span>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-slate-300 font-medium">Sollzins</span>
+                            <span id="dRate" class="text-sm font-bold text-emerald-400">3,50%</span>
+                        </div>
+                        <input type="range" id="rate" min="0.5" max="8" step="0.05" value="3.5">
                     </div>
-                    <input type="range" id="zinsbindung" min="5" max="30" step="1" value="15">
-                </div>
-
-                <!-- Tilgung -->
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Anfängliche Tilgung</label>
-                        <span id="displayTilgung" class="text-sm font-semibold text-emerald-400">2,00%</span>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-slate-300 font-medium">Tilgung</span>
+                            <span id="dTilgung" class="text-sm font-bold text-emerald-400">2,00%</span>
+                        </div>
+                        <input type="range" id="tilgung" min="1" max="10" step="0.1" value="2">
                     </div>
-                    <input type="range" id="tilgung" min="1" max="10" step="0.1" value="2">
                 </div>
 
-                <!-- Sondertilgung -->
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label class="text-sm text-slate-300">Jährliche Sondertilgung</label>
-                        <span id="displaySondertilgung" class="text-sm font-semibold text-emerald-400">0 €</span>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-slate-300 font-medium">Zinsbindung</span>
+                            <span id="dZinsbindung" class="text-sm font-bold text-emerald-400">15 J</span>
+                        </div>
+                        <input type="range" id="zinsbindung" min="5" max="30" step="1" value="15">
                     </div>
-                    <input type="range" id="sondertilgung" min="0" max="20000" step="500" value="0">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-slate-300 font-medium">Sondertilg.</span>
+                            <span id="dSondertilgung" class="text-sm font-bold text-emerald-400">0 €</span>
+                        </div>
+                        <input type="range" id="sondertilgung" min="0" max="20000" step="500" value="0">
+                    </div>
                 </div>
-            </div>
-
-            <!-- Bundesland & Options -->
-            <div class="card p-5 space-y-4">
-                <h2 class="font-semibold text-white">Standort & Optionen</h2>
 
                 <div>
-                    <label class="text-sm text-slate-300 block mb-2">Bundesland</label>
+                    <label class="text-sm text-slate-300 font-medium block mb-2">Bundesland</label>
                     <select id="bundesland">
                         <option value="BW">Baden-Württemberg (5,0%)</option>
                         <option value="BY">Bayern (3,5%)</option>
@@ -579,747 +478,593 @@
                 </div>
 
                 <div class="flex items-center justify-between py-2">
-                    <label class="text-sm text-slate-300">Maklergebühr einbeziehen</label>
+                    <span class="text-sm text-slate-300 font-medium">Maklergebühr (3,57%)</span>
                     <label class="toggle">
                         <input type="checkbox" id="mitMakler" checked>
                         <span class="toggle-track"></span>
                     </label>
                 </div>
+
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm text-slate-300 font-medium">Monatl. Netto-Einkommen</span>
+                        <span id="dNetto" class="text-sm font-bold text-slate-400">4.000 €</span>
+                    </div>
+                    <input type="range" id="nettoEinkommen" min="1500" max="15000" step="100" value="4000">
+                    <p class="text-[11px] text-slate-500 mt-1">Für Belastungsquote-Berechnung</p>
+                </div>
             </div>
 
-            <!-- Results Grid -->
+            <!-- Visualization: Donut Chart -->
+            <div class="card p-5">
+                <h3 class="text-sm font-bold text-white mb-4">Kostenaufteilung Gesamtfinanzierung</h3>
+                <div class="flex items-center gap-6">
+                    <div class="w-32 h-32 relative">
+                        <canvas id="donutChart"></canvas>
+                    </div>
+                    <div class="space-y-2 flex-1">
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-emerald-500"></span>Tilgung</span>
+                            <span id="legendTilgung" class="text-sm font-bold">0 €</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-rose-500"></span>Zinsen</span>
+                            <span id="legendZinsen" class="text-sm font-bold text-rose-400">0 €</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center gap-2 text-sm"><span class="w-3 h-3 rounded-full bg-amber-500"></span>Nebenkosten</span>
+                            <span id="legendNebenkosten" class="text-sm font-bold text-amber-400">0 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
             <div class="grid grid-cols-2 gap-3">
                 <div class="card p-4">
                     <p class="data-label">Gesamtzinsen</p>
-                    <p id="totalInterest" class="text-xl font-bold text-rose-400">0 €</p>
-                </div>
-                <div class="card p-4">
-                    <p class="data-label">Gesamtkosten</p>
-                    <p id="totalPayment" class="text-xl font-bold text-white">0 €</p>
+                    <p id="totalInterest" class="text-xl font-bold text-rose-400 mt-1">0 €</p>
                 </div>
                 <div class="card p-4">
                     <p class="data-label">Restschuld</p>
-                    <p id="restschuld" class="text-xl font-bold text-amber-400">0 €</p>
-                    <p id="restschuldInfo" class="text-xs text-slate-500 mt-1">Nach 15 Jahren</p>
-                </div>
-                <div class="card p-4">
-                    <p class="data-label">Laufzeit</p>
-                    <p id="laufzeit" class="text-xl font-bold text-sky-400">0 Jahre</p>
+                    <p id="restschuld" class="text-xl font-bold text-amber-400 mt-1">0 €</p>
+                    <p id="restschuldInfo" class="text-[10px] text-slate-500 mt-0.5">Nach 15 J. Zinsbindung</p>
                 </div>
             </div>
 
-            <!-- Chart -->
+            <!-- Line Chart -->
             <div class="card p-5">
-                <h3 class="font-semibold text-white mb-4">Tilgungsverlauf</h3>
-                <div class="h-64">
-                    <canvas id="chart"></canvas>
+                <h3 class="text-sm font-bold text-white mb-4">Tilgungsverlauf</h3>
+                <div class="h-48">
+                    <canvas id="lineChart"></canvas>
                 </div>
             </div>
 
             <!-- Table -->
             <div class="card p-5 overflow-hidden">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-semibold text-white">Jährliche Übersicht</h3>
-                    <button onclick="exportCSV()" class="btn btn-secondary text-xs no-print">CSV Export</button>
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-bold text-white">Tilgungsplan</h3>
+                    <button onclick="exportCSV()" class="btn btn-secondary btn-sm no-print">CSV</button>
                 </div>
-                <div class="overflow-x-auto max-h-80 overflow-y-auto">
+                <div class="overflow-x-auto max-h-64 overflow-y-auto">
                     <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Jahr</th>
-                                <th>Zinsen</th>
-                                <th>Tilgung</th>
-                                <th class="text-right">Restschuld</th>
-                            </tr>
-                        </thead>
+                        <thead class="sticky top-0 bg-slate-800"><tr><th>Jahr</th><th>Zinsen</th><th>Tilgung</th><th class="text-right">Rest</th></tr></thead>
                         <tbody id="tableBody"></tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- Page: Nebenkosten -->
+        <!-- PAGE: NEBENKOSTEN -->
         <section id="page-nebenkosten" class="page space-y-4">
+            <!-- Dynamic EK Status -->
+            <div id="ekStatusCard" class="card p-5">
+                <div class="flex items-center gap-4">
+                    <div class="relative w-16 h-16">
+                        <svg class="progress-ring w-16 h-16" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#334155" stroke-width="3"/>
+                            <circle id="ekRing" class="progress-ring-circle" cx="18" cy="18" r="15.9" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="0 100"/>
+                        </svg>
+                        <span id="ekRingText" class="absolute inset-0 flex items-center justify-center text-sm font-bold">0%</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold text-white">Eigenkapital-Check</p>
+                        <p id="ekCheckText" class="text-xs text-slate-400 mt-1">Berechnung läuft...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nebenkosten Summary -->
             <div class="card p-5 border-l-4 border-l-amber-500">
-                <p class="data-label">Gesamte Nebenkosten</p>
-                <p id="nebenkostenTotal" class="data-value text-amber-400">0 €</p>
-                <p id="nebenkostenProzent" class="text-sm text-slate-400 mt-1">0% vom Kaufpreis</p>
+                <p class="data-label">Kaufnebenkosten gesamt</p>
+                <p id="nkTotal" class="data-medium text-amber-400 mt-1">0 €</p>
+                <p id="nkProzent" class="text-xs text-slate-500 mt-1">0% vom Kaufpreis</p>
             </div>
 
+            <!-- Breakdown -->
             <div class="card p-5 space-y-4">
-                <h3 class="font-semibold text-white">Aufschlüsselung</h3>
-
-                <div class="flex justify-between items-center py-3 border-b border-slate-700">
-                    <div>
-                        <p class="text-sm text-slate-300">Grunderwerbsteuer</p>
-                        <p id="grunderwerbsteuerInfo" class="text-xs text-slate-500">6,5% vom Kaufpreis</p>
+                <h3 class="text-sm font-bold text-white">Aufschlüsselung</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center py-2 border-b border-slate-700/50">
+                        <div>
+                            <p class="text-sm font-medium">Grunderwerbsteuer</p>
+                            <p id="nkGrundInfo" class="text-xs text-slate-500">6,5% vom Kaufpreis</p>
+                        </div>
+                        <p id="nkGrund" class="font-bold text-amber-400">0 €</p>
                     </div>
-                    <p id="grunderwerbsteuer" class="font-semibold text-amber-400">0 €</p>
-                </div>
-
-                <div class="flex justify-between items-center py-3 border-b border-slate-700">
-                    <div>
-                        <p class="text-sm text-slate-300">Notar & Grundbuch</p>
-                        <p class="text-xs text-slate-500">Ca. 2% vom Kaufpreis</p>
+                    <div class="flex justify-between items-center py-2 border-b border-slate-700/50">
+                        <div>
+                            <p class="text-sm font-medium">Notar & Grundbuch</p>
+                            <p class="text-xs text-slate-500">~2% vom Kaufpreis</p>
+                        </div>
+                        <p id="nkNotar" class="font-bold text-amber-400">0 €</p>
                     </div>
-                    <p id="notarkosten" class="font-semibold text-amber-400">0 €</p>
-                </div>
-
-                <div class="flex justify-between items-center py-3">
-                    <div>
-                        <p class="text-sm text-slate-300">Maklergebühr</p>
-                        <p class="text-xs text-slate-500">3,57% inkl. MwSt.</p>
+                    <div class="flex justify-between items-center py-2">
+                        <div>
+                            <p class="text-sm font-medium">Maklergebühr</p>
+                            <p class="text-xs text-slate-500">3,57% inkl. MwSt.</p>
+                        </div>
+                        <p id="nkMakler" class="font-bold text-amber-400">0 €</p>
                     </div>
-                    <p id="maklerkosten" class="font-semibold text-amber-400">0 €</p>
                 </div>
             </div>
 
-            <div class="card p-5 bg-emerald-500/10 border-emerald-500/30">
-                <p class="text-sm text-emerald-300">
-                    <strong>Tipp:</strong> Nebenkosten sollten aus Eigenkapital bezahlt werden. Empfohlenes Eigenkapital: <strong id="empfohlenesEK">0 €</strong>
-                </p>
+            <!-- Dynamic Advice -->
+            <div id="nkAdvice" class="card p-5">
+                <!-- Filled dynamically -->
+            </div>
+
+            <!-- Total Cost Overview -->
+            <div class="card p-5">
+                <h3 class="text-sm font-bold text-white mb-4">Gesamtübersicht Kapitalbedarf</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between"><span class="text-slate-400">Kaufpreis:</span><span id="sumKaufpreis" class="font-bold">0 €</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">+ Nebenkosten:</span><span id="sumNebenkosten" class="font-bold text-amber-400">0 €</span></div>
+                    <div class="flex justify-between border-t border-slate-700 pt-3"><span class="font-medium">= Gesamtkosten:</span><span id="sumGesamt" class="font-bold text-lg">0 €</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">- Eigenkapital:</span><span id="sumEK" class="font-bold text-emerald-400">0 €</span></div>
+                    <div class="flex justify-between border-t border-slate-700 pt-3"><span class="font-medium">= Darlehensbedarf:</span><span id="sumDarlehen" class="font-bold text-lg text-sky-400">0 €</span></div>
+                </div>
             </div>
         </section>
 
-        <!-- Page: Vergleich -->
+        <!-- PAGE: VERGLEICH -->
         <section id="page-vergleich" class="page space-y-4">
             <div class="card p-5">
-                <h3 class="font-semibold text-white mb-4">Tilgungsvergleich</h3>
-                <p class="text-sm text-slate-400 mb-4">Vergleich Ihrer aktuellen Einstellung mit +1% höherer Tilgung</p>
+                <h3 class="text-sm font-bold text-white mb-2">Szenarien-Vergleich</h3>
+                <p class="text-xs text-slate-400 mb-4">Vergleichen Sie verschiedene Tilgungs- und Zinsszenarien</p>
 
                 <div class="space-y-4">
-                    <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-sky-500">
-                        <p class="text-xs text-slate-400 uppercase mb-2">Aktuelle Einstellung</p>
-                        <p id="v1Rate" class="text-xl font-bold text-white">0 €/Monat</p>
-                        <div class="mt-2 text-sm text-slate-400">
-                            <p>Gesamtzinsen: <span id="v1Zinsen" class="text-rose-400">0 €</span></p>
-                            <p>Laufzeit: <span id="v1Laufzeit" class="text-sky-400">0 Jahre</span></p>
+                    <!-- Scenario 1: Current -->
+                    <div class="compare-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ihre Einstellung</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-700 rounded-full text-slate-300">Basis</span>
+                        </div>
+                        <p id="c1Rate" class="text-xl font-bold text-white">0 €/Mon.</p>
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-xs">
+                            <div><span class="text-slate-500">Zinsen:</span><br><span id="c1Zinsen" class="font-bold text-rose-400">0 €</span></div>
+                            <div><span class="text-slate-500">Laufzeit:</span><br><span id="c1Laufzeit" class="font-bold">0 J.</span></div>
+                            <div><span class="text-slate-500">Restschuld:</span><br><span id="c1Rest" class="font-bold text-amber-400">0 €</span></div>
                         </div>
                     </div>
 
-                    <div class="p-4 bg-slate-800 rounded-lg border-l-4 border-emerald-500">
-                        <p class="text-xs text-slate-400 uppercase mb-2">Mit +1% mehr Tilgung</p>
-                        <p id="v2Rate" class="text-xl font-bold text-white">0 €/Monat</p>
-                        <div class="mt-2 text-sm text-slate-400">
-                            <p>Gesamtzinsen: <span id="v2Zinsen" class="text-rose-400">0 €</span></p>
-                            <p>Laufzeit: <span id="v2Laufzeit" class="text-emerald-400">0 Jahre</span></p>
+                    <!-- Scenario 2: +1% Tilgung -->
+                    <div class="compare-card highlight">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">+1% mehr Tilgung</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-emerald-500/20 rounded-full text-emerald-400">Empfohlen</span>
                         </div>
-                        <p id="ersparnis" class="mt-3 text-sm text-emerald-400 font-semibold">Sie sparen: 0 €</p>
+                        <p id="c2Rate" class="text-xl font-bold text-white">0 €/Mon.</p>
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-xs">
+                            <div><span class="text-slate-500">Zinsen:</span><br><span id="c2Zinsen" class="font-bold text-rose-400">0 €</span></div>
+                            <div><span class="text-slate-500">Laufzeit:</span><br><span id="c2Laufzeit" class="font-bold text-emerald-400">0 J.</span></div>
+                            <div><span class="text-slate-500">Restschuld:</span><br><span id="c2Rest" class="font-bold text-amber-400">0 €</span></div>
+                        </div>
+                        <p id="c2Save" class="text-xs text-emerald-400 font-bold mt-3">Ersparnis: 0 €</p>
                     </div>
+
+                    <!-- Scenario 3: -0.5% Zins -->
+                    <div class="compare-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">-0,5% günstigerer Zins</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-sky-500/20 rounded-full text-sky-400">Verhandeln!</span>
+                        </div>
+                        <p id="c3Rate" class="text-xl font-bold text-white">0 €/Mon.</p>
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-xs">
+                            <div><span class="text-slate-500">Zinsen:</span><br><span id="c3Zinsen" class="font-bold text-rose-400">0 €</span></div>
+                            <div><span class="text-slate-500">Laufzeit:</span><br><span id="c3Laufzeit" class="font-bold">0 J.</span></div>
+                            <div><span class="text-slate-500">Restschuld:</span><br><span id="c3Rest" class="font-bold text-amber-400">0 €</span></div>
+                        </div>
+                        <p id="c3Save" class="text-xs text-sky-400 font-bold mt-3">Ersparnis: 0 €</p>
+                    </div>
+
+                    <!-- Scenario 4: 5k Sondertilgung -->
+                    <div class="compare-card">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-violet-400 uppercase tracking-wider">5.000 € Sondertilgung/Jahr</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-violet-500/20 rounded-full text-violet-400">Option</span>
+                        </div>
+                        <p id="c4Rate" class="text-xl font-bold text-white">0 €/Mon.</p>
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-xs">
+                            <div><span class="text-slate-500">Zinsen:</span><br><span id="c4Zinsen" class="font-bold text-rose-400">0 €</span></div>
+                            <div><span class="text-slate-500">Laufzeit:</span><br><span id="c4Laufzeit" class="font-bold text-violet-400">0 J.</span></div>
+                            <div><span class="text-slate-500">Restschuld:</span><br><span id="c4Rest" class="font-bold text-amber-400">0 €</span></div>
+                        </div>
+                        <p id="c4Save" class="text-xs text-violet-400 font-bold mt-3">Ersparnis: 0 €</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Chart -->
+            <div class="card p-5">
+                <h3 class="text-sm font-bold text-white mb-4">Zinskosten-Vergleich</h3>
+                <div class="h-40">
+                    <canvas id="compareChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <!-- Page: Daten -->
+        <!-- PAGE: SPEICHERN -->
         <section id="page-daten" class="page space-y-4">
             <div class="card p-5 space-y-4">
-                <h3 class="font-semibold text-white">Konfiguration speichern</h3>
-                <p class="text-sm text-slate-400">Ihre Daten werden ausschließlich lokal auf diesem Gerät gespeichert.</p>
-
+                <h3 class="text-sm font-bold text-white">Lokal speichern</h3>
+                <p class="text-xs text-slate-400">Daten werden nur auf Ihrem Gerät gespeichert.</p>
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="saveToLocal()" class="btn btn-primary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-                        Speichern
-                    </button>
-                    <button onclick="loadFromLocal()" class="btn btn-secondary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                        Laden
-                    </button>
+                    <button onclick="saveLocal()" class="btn btn-primary">Speichern</button>
+                    <button onclick="loadLocal()" class="btn btn-secondary">Laden</button>
                 </div>
-
-                <p id="lastSaved" class="text-xs text-slate-500"></p>
+                <p id="lastSaved" class="text-[11px] text-slate-500"></p>
             </div>
 
             <div class="card p-5 space-y-4">
-                <h3 class="font-semibold text-white">JSON Export / Import</h3>
-                <p class="text-sm text-slate-400">Exportieren Sie Ihre Konfiguration als JSON-Datei oder importieren Sie eine bestehende.</p>
-
+                <h3 class="text-sm font-bold text-white">JSON Export / Import</h3>
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="exportJSON()" class="btn btn-secondary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                        Export JSON
-                    </button>
-                    <button onclick="showImportModal()" class="btn btn-secondary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                        Import JSON
-                    </button>
+                    <button onclick="exportJSON()" class="btn btn-secondary">Export</button>
+                    <button onclick="openModal('importModal')" class="btn btn-secondary">Import</button>
                 </div>
             </div>
 
             <div class="card p-5 space-y-4">
-                <h3 class="font-semibold text-white">Drucken</h3>
-                <p class="text-sm text-slate-400">Drucken Sie eine übersichtliche Zusammenfassung Ihrer Finanzierung.</p>
-                <button onclick="window.print()" class="btn btn-secondary w-full">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-                    Zusammenfassung drucken
-                </button>
+                <h3 class="text-sm font-bold text-white">Drucken</h3>
+                <button onclick="window.print()" class="btn btn-secondary w-full">Zusammenfassung drucken</button>
             </div>
         </section>
 
-        <!-- Print Summary (only visible when printing) -->
-        <section id="printSummary" class="print-only space-y-6 mt-8">
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold">Finanzierungsübersicht</h1>
-                <p class="text-sm text-slate-500">Erstellt am <span id="printDate"></span></p>
+        <!-- Print Summary -->
+        <section class="print-only mt-8 space-y-4">
+            <div class="text-center mb-6">
+                <h1 class="text-xl font-bold">Finanzierungsübersicht</h1>
+                <p class="text-xs text-slate-500">Erstellt am <span id="printDate"></span></p>
             </div>
-
-            <div class="card p-5">
-                <h3 class="font-semibold mb-4">Finanzierungsparameter</h3>
-                <table class="w-full text-sm">
-                    <tr><td class="py-1 text-slate-500">Kaufpreis:</td><td id="printKaufpreis" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Eigenkapital:</td><td id="printEigenkapital" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Darlehensbetrag:</td><td id="printDarlehen" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Sollzins p.a.:</td><td id="printZins" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Anfängliche Tilgung:</td><td id="printTilgung" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Zinsbindung:</td><td id="printZinsbindung" class="py-1 text-right font-semibold"></td></tr>
-                </table>
+            <div class="card p-4 text-sm">
+                <h3 class="font-bold mb-2">Parameter</h3>
+                <table class="w-full"><tbody id="printParams"></tbody></table>
             </div>
-
-            <div class="card p-5">
-                <h3 class="font-semibold mb-4">Ergebnisse</h3>
-                <table class="w-full text-sm">
-                    <tr><td class="py-1 text-slate-500">Monatliche Rate:</td><td id="printRate" class="py-1 text-right font-semibold text-emerald-600"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Gesamtzinsen:</td><td id="printGesamtzinsen" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Gesamtkosten:</td><td id="printGesamtkosten" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Restschuld nach Zinsbindung:</td><td id="printRestschuld" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Voraussichtliche Laufzeit:</td><td id="printLaufzeit" class="py-1 text-right font-semibold"></td></tr>
-                </table>
-            </div>
-
-            <div class="card p-5">
-                <h3 class="font-semibold mb-4">Nebenkosten</h3>
-                <table class="w-full text-sm">
-                    <tr><td class="py-1 text-slate-500">Grunderwerbsteuer:</td><td id="printGrunderwerbsteuer" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Notar & Grundbuch:</td><td id="printNotar" class="py-1 text-right font-semibold"></td></tr>
-                    <tr><td class="py-1 text-slate-500">Maklergebühr:</td><td id="printMakler" class="py-1 text-right font-semibold"></td></tr>
-                    <tr class="border-t border-slate-300"><td class="py-2 font-semibold">Gesamt Nebenkosten:</td><td id="printNebenkostenGesamt" class="py-2 text-right font-bold"></td></tr>
-                </table>
+            <div class="card p-4 text-sm">
+                <h3 class="font-bold mb-2">Ergebnisse</h3>
+                <table class="w-full"><tbody id="printResults"></tbody></table>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="mt-12 pt-8 border-t border-slate-800 text-center space-y-4 pb-24">
-            <div class="text-xs text-slate-500">
-                <p class="font-semibold text-slate-400 mb-2">Verantwortlich im Sinne der DSGVO</p>
-                <p>Belkis Aslani</p>
-                <p>Vogelsangstraße 32</p>
-                <p>71691 Freiberg am Neckar</p>
-                <p>Deutschland</p>
+        <footer class="mt-10 pt-6 border-t border-slate-800 text-center space-y-3 text-[11px] text-slate-500 pb-24">
+            <p class="font-medium text-slate-400">Belkis Aslani · Vogelsangstraße 32 · 71691 Freiberg am Neckar</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="openModal('datenschutzModal')" class="underline hover:text-white">Datenschutz</button>
+                <button onclick="openModal('impressumModal')" class="underline hover:text-white">Impressum</button>
             </div>
-
-            <div class="flex justify-center gap-4 text-xs">
-                <button onclick="showDatenschutz()" class="text-slate-400 hover:text-white underline">Datenschutz</button>
-                <button onclick="showImpressum()" class="text-slate-400 hover:text-white underline">Impressum</button>
-            </div>
-
-            <p class="text-xs text-slate-600">Alle Berechnungen sind unverbindlich. Stand: 2025</p>
+            <p>Alle Angaben unverbindlich · Stand 2025</p>
         </footer>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav no-print">
-        <button class="nav-btn active" data-page="rechner">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            Rechner
-        </button>
-        <button class="nav-btn" data-page="nebenkosten">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            Nebenkosten
-        </button>
-        <button class="nav-btn" data-page="vergleich">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            Vergleich
-        </button>
-        <button class="nav-btn" data-page="daten">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-            Speichern
-        </button>
+        <div class="max-w-lg mx-auto flex justify-around">
+            <button class="nav-item active" data-page="rechner">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                RECHNER
+            </button>
+            <button class="nav-item" data-page="nebenkosten">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                NEBENKOSTEN
+            </button>
+            <button class="nav-item" data-page="vergleich">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                VERGLEICH
+            </button>
+            <button class="nav-item" data-page="daten">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+                SPEICHERN
+            </button>
+        </div>
     </nav>
 
-    <!-- Datenschutz Modal -->
-    <div id="datenschutzModal" class="modal-overlay">
-        <div class="modal p-6 max-h-[80vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Datenschutzerklärung</h3>
-                <button onclick="closeDatenschutz()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
-            </div>
-            <div class="text-sm text-slate-300 space-y-4">
-                <p><strong>Verantwortlicher:</strong><br>Belkis Aslani<br>Vogelsangstraße 32<br>71691 Freiberg am Neckar<br>Deutschland</p>
-
-                <h4 class="font-semibold text-white mt-4">1. Datenverarbeitung</h4>
-                <p>Diese Anwendung verarbeitet <strong>keine personenbezogenen Daten auf einem Server</strong>. Alle Berechnungen und Eingaben werden <strong>ausschließlich lokal</strong> in Ihrem Browser durchgeführt und gespeichert.</p>
-
-                <h4 class="font-semibold text-white mt-4">2. Lokale Speicherung</h4>
-                <p>Wenn Sie die Speicherfunktion nutzen, werden Ihre Eingaben im lokalen Speicher (localStorage) Ihres Browsers gespeichert. Diese Daten verlassen niemals Ihr Gerät und werden nicht an Dritte übermittelt.</p>
-
-                <h4 class="font-semibold text-white mt-4">3. Keine Cookies</h4>
-                <p>Diese Anwendung verwendet keine Cookies und kein Tracking.</p>
-
-                <h4 class="font-semibold text-white mt-4">4. Keine Datenübertragung</h4>
-                <p>Es werden keine Daten an Server, Cloud-Dienste oder Dritte übertragen. Die Anwendung funktioniert vollständig offline nach dem ersten Laden.</p>
-
-                <h4 class="font-semibold text-white mt-4">5. Ihre Rechte</h4>
-                <p>Da keine personenbezogenen Daten erhoben werden, entfallen die üblichen Betroffenenrechte (Auskunft, Löschung, etc.). Sie können jederzeit den lokalen Speicher Ihres Browsers löschen, um alle gespeicherten Daten zu entfernen.</p>
-
-                <h4 class="font-semibold text-white mt-4">6. Externe Ressourcen</h4>
-                <p>Die Anwendung lädt einmalig folgende externe Ressourcen:</p>
-                <ul class="list-disc list-inside text-slate-400">
-                    <li>Tailwind CSS (cdn.tailwindcss.com)</li>
-                    <li>Chart.js (cdn.jsdelivr.net)</li>
-                    <li>Google Fonts (fonts.googleapis.com)</li>
-                </ul>
-                <p class="mt-2">Dabei können die jeweiligen Anbieter technisch notwendige Daten wie Ihre IP-Adresse erhalten.</p>
-            </div>
-            <button onclick="closeDatenschutz()" class="btn btn-primary w-full mt-6">Schließen</button>
-        </div>
-    </div>
-
-    <!-- Impressum Modal -->
-    <div id="impressumModal" class="modal-overlay">
-        <div class="modal p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Impressum</h3>
-                <button onclick="closeImpressum()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
-            </div>
-            <div class="text-sm text-slate-300 space-y-4">
-                <p><strong>Angaben gemäß § 5 TMG</strong></p>
-                <p>Belkis Aslani<br>Vogelsangstraße 32<br>71691 Freiberg am Neckar<br>Deutschland</p>
-
-                <h4 class="font-semibold text-white mt-4">Kontakt</h4>
-                <p>Bei Fragen zur Anwendung wenden Sie sich bitte schriftlich an die oben genannte Adresse.</p>
-
-                <h4 class="font-semibold text-white mt-4">Haftungsausschluss</h4>
-                <p>Die Berechnungen dieser Anwendung dienen ausschließlich der unverbindlichen Information. Für die Richtigkeit, Vollständigkeit und Aktualität der Berechnungen wird keine Gewähr übernommen. Eine Finanzierungszusage kann nur durch ein Kreditinstitut erfolgen.</p>
-            </div>
-            <button onclick="closeImpressum()" class="btn btn-primary w-full mt-6">Schließen</button>
-        </div>
-    </div>
-
     <script>
-        // ==========================================
-        // === CONFIGURATION ===
-        // ==========================================
+        // ========== CONFIG ==========
+        const GES = { BW:5,BY:3.5,BE:6,BB:6.5,HB:5,HH:5.5,HE:6,MV:6,NI:5,NW:6.5,RP:5,SL:6.5,SN:5.5,ST:5,SH:6.5,TH:5 };
+        const NOTAR=1.5, GRUNDBUCH=0.5, MAKLER=3.57;
 
-        const GRUNDERWERBSTEUER = {
-            'BW': 5.0, 'BY': 3.5, 'BE': 6.0, 'BB': 6.5, 'HB': 5.0,
-            'HH': 5.5, 'HE': 6.0, 'MV': 6.0, 'NI': 5.0, 'NW': 6.5,
-            'RP': 5.0, 'SL': 6.5, 'SN': 5.5, 'ST': 5.0, 'SH': 6.5, 'TH': 5.0
-        };
+        const state = { kaufpreis:300000, eigenkapital:60000, rate:3.5, zinsbindung:15, tilgung:2, sondertilgung:0, bundesland:'NW', mitMakler:true, netto:4000 };
+        let donutChart, lineChart, compareChart;
 
-        const NOTAR_PROZENT = 1.5;
-        const GRUNDBUCH_PROZENT = 0.5;
-        const MAKLER_PROZENT = 3.57;
+        // ========== FORMATTERS ==========
+        const fE = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+        const fE2 = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',minimumFractionDigits:2}).format(n);
+        const fP = n => n.toFixed(2).replace('.',',')+' %';
 
-        const state = {
-            kaufpreis: 300000,
-            eigenkapital: 60000,
-            rate: 3.5,
-            zinsbindung: 15,
-            tilgung: 2.0,
-            sondertilgung: 0,
-            bundesland: 'NW',
-            mitMakler: true
-        };
-
-        let chart = null;
-
-        // ==========================================
-        // === FORMATTERS ===
-        // ==========================================
-
-        const formatEuro = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
-        const formatEuroDetailed = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(n);
-        const formatPercent = (n) => n.toFixed(2).replace('.', ',') + '%';
-
-        // ==========================================
-        // === CALCULATIONS ===
-        // ==========================================
-
-        function calculateNebenkosten() {
-            const kp = state.kaufpreis;
-            const gSatz = GRUNDERWERBSTEUER[state.bundesland];
-            const grunderwerbsteuer = kp * (gSatz / 100);
-            const notar = kp * (NOTAR_PROZENT / 100);
-            const grundbuch = kp * (GRUNDBUCH_PROZENT / 100);
-            const makler = state.mitMakler ? kp * (MAKLER_PROZENT / 100) : 0;
-            const gesamt = grunderwerbsteuer + notar + grundbuch + makler;
-
-            return { grunderwerbsteuer, gSatz, notar, grundbuch, makler, gesamt, gesamtProzent: (gesamt / kp) * 100 };
+        // ========== CALCULATIONS ==========
+        function calcNK() {
+            const kp = state.kaufpreis, gs = GES[state.bundesland];
+            const grund = kp*(gs/100), notar = kp*(NOTAR/100), gb = kp*(GRUNDBUCH/100);
+            const makler = state.mitMakler ? kp*(MAKLER/100) : 0;
+            return { grund, notar, gb, makler, gesamt: grund+notar+gb+makler, gs };
         }
 
-        function calculateLoan(customTilgung = null) {
-            const nk = calculateNebenkosten();
+        function calcLoan(opts={}) {
+            const nk = calcNK();
+            const tilgung = opts.tilgung ?? state.tilgung;
+            const zins = opts.rate ?? state.rate;
+            const sonder = opts.sondertilgung ?? state.sondertilgung;
             const darlehen = state.kaufpreis + nk.gesamt - state.eigenkapital;
+            if (darlehen <= 0) return { darlehen:0, monthly:0, totalInterest:0, totalPayment:0, years:[], laufzeit:0, restschuld:0 };
 
-            if (darlehen <= 0) {
-                return { darlehen: 0, monthlyPayment: 0, totalInterest: 0, totalPayment: 0, yearlyData: [], restschuldNachBindung: 0, gesamtlaufzeit: 0 };
-            }
+            const zinsSatz = zins/100, jahresRate = darlehen*(zinsSatz + tilgung/100);
+            const monthly = jahresRate/12;
+            let balance = darlehen, totalInterest = 0, years = [], restschuld = darlehen;
 
-            const tilgungSatz = customTilgung ?? state.tilgung;
-            const zinsSatz = state.rate / 100;
-            const jahresAnnuitaet = darlehen * (zinsSatz + tilgungSatz / 100);
-            const monthlyPayment = jahresAnnuitaet / 12;
-
-            let balance = darlehen;
-            let totalInterest = 0;
-            let yearlyData = [];
-            let restschuldNachBindung = darlehen;
-
-            for (let year = 1; year <= 50 && balance > 0; year++) {
-                let yearInterest = 0, yearPrincipal = 0, yearExtra = 0;
-
-                for (let month = 1; month <= 12 && balance > 0; month++) {
-                    const interest = balance * (zinsSatz / 12);
-                    let principal = monthlyPayment - interest;
-                    let extra = (month === 12 && state.sondertilgung > 0) ? Math.min(state.sondertilgung, balance - principal) : 0;
-
-                    if (principal + extra > balance) { principal = balance; extra = 0; }
-
-                    balance -= (principal + extra);
-                    if (balance < 0) balance = 0;
-
-                    yearInterest += interest;
-                    yearPrincipal += principal;
-                    yearExtra += extra;
-                    totalInterest += interest;
+            for (let y=1; y<=50 && balance>0; y++) {
+                let yInt=0, yPrin=0, yExtra=0;
+                for (let m=1; m<=12 && balance>0; m++) {
+                    const int = balance*(zinsSatz/12);
+                    let prin = monthly - int;
+                    let extra = (m===12 && sonder>0) ? Math.min(sonder, balance-prin) : 0;
+                    if (prin+extra > balance) { prin=balance; extra=0; }
+                    balance -= (prin+extra);
+                    if (balance<0) balance=0;
+                    yInt+=int; yPrin+=prin; yExtra+=extra; totalInterest+=int;
                 }
-
-                yearlyData.push({ year, interest: yearInterest, principal: yearPrincipal, extra: yearExtra, balance });
-
-                if (year === state.zinsbindung) restschuldNachBindung = balance;
+                years.push({year:y, interest:yInt, principal:yPrin+yExtra, balance});
+                if (y===state.zinsbindung) restschuld = balance;
             }
-
-            return {
-                darlehen,
-                monthlyPayment,
-                totalInterest,
-                totalPayment: darlehen + totalInterest,
-                yearlyData,
-                restschuldNachBindung,
-                gesamtlaufzeit: yearlyData.length
-            };
+            return { darlehen, monthly, totalInterest, totalPayment:darlehen+totalInterest, years, laufzeit:years.length, restschuld, nk };
         }
 
-        // ==========================================
-        // === UI UPDATES ===
-        // ==========================================
-
+        // ========== UI ==========
         function updateUI() {
-            const data = calculateLoan();
-            const nk = calculateNebenkosten();
+            const d = calcLoan(), nk = d.nk;
 
             // Displays
-            document.getElementById('displayKaufpreis').textContent = formatEuro(state.kaufpreis);
-            document.getElementById('displayEigenkapital').textContent = formatEuro(state.eigenkapital);
-            document.getElementById('displayRate').textContent = formatPercent(state.rate);
-            document.getElementById('displayZinsbindung').textContent = state.zinsbindung + ' Jahre';
-            document.getElementById('displayTilgung').textContent = formatPercent(state.tilgung);
-            document.getElementById('displaySondertilgung').textContent = formatEuro(state.sondertilgung);
+            document.getElementById('dKaufpreis').textContent = fE(state.kaufpreis);
+            document.getElementById('dEigenkapital').textContent = fE(state.eigenkapital);
+            document.getElementById('dRate').textContent = fP(state.rate);
+            document.getElementById('dTilgung').textContent = fP(state.tilgung);
+            document.getElementById('dZinsbindung').textContent = state.zinsbindung+' J';
+            document.getElementById('dSondertilgung').textContent = fE(state.sondertilgung);
+            document.getElementById('dNetto').textContent = fE(state.netto);
 
-            const ekQuote = (state.eigenkapital / state.kaufpreis) * 100;
-            const ekEl = document.getElementById('ekQuote');
-            ekEl.textContent = `Eigenkapitalquote: ${ekQuote.toFixed(1)}%`;
-            ekEl.className = ekQuote >= 20 ? 'text-xs text-emerald-400 mt-1' : 'text-xs text-amber-400 mt-1';
+            // EK Quote
+            const ekQ = (state.eigenkapital/state.kaufpreis)*100;
+            document.getElementById('ekQuote').textContent = `Quote: ${ekQ.toFixed(0)}%`;
+            const ekOk = state.eigenkapital >= nk.gesamt;
+            document.getElementById('ekStatus').textContent = ekOk ? (ekQ>=20?'Optimal':'Ausreichend') : 'Zu niedrig';
+            document.getElementById('ekStatus').className = `text-[11px] font-medium ${ekOk ? (ekQ>=20?'text-emerald-400':'text-amber-400') : 'text-rose-400'}`;
 
-            // Results
-            document.getElementById('monthlyRate').textContent = formatEuroDetailed(data.monthlyPayment);
-            document.getElementById('loanAmount').textContent = formatEuro(data.darlehen);
-            document.getElementById('totalInterest').textContent = formatEuro(data.totalInterest);
-            document.getElementById('totalPayment').textContent = formatEuro(data.totalPayment);
-            document.getElementById('restschuld').textContent = formatEuro(data.restschuldNachBindung);
-            document.getElementById('restschuldInfo').textContent = `Nach ${state.zinsbindung} Jahren`;
-            document.getElementById('laufzeit').textContent = data.gesamtlaufzeit + ' Jahre';
+            // Main Results
+            document.getElementById('monthlyRate').textContent = fE2(d.monthly);
+            document.getElementById('loanAmount').textContent = fE(d.darlehen);
+            document.getElementById('totalYears').textContent = d.laufzeit+' Jahre';
+            document.getElementById('totalInterest').textContent = fE(d.totalInterest);
+            document.getElementById('restschuld').textContent = fE(d.restschuld);
+            document.getElementById('restschuldInfo').textContent = `Nach ${state.zinsbindung} J. Zinsbindung`;
 
-            // Nebenkosten
-            document.getElementById('nebenkostenTotal').textContent = formatEuro(nk.gesamt);
-            document.getElementById('nebenkostenProzent').textContent = `${nk.gesamtProzent.toFixed(1)}% vom Kaufpreis`;
-            document.getElementById('grunderwerbsteuer').textContent = formatEuro(nk.grunderwerbsteuer);
-            document.getElementById('grunderwerbsteuerInfo').textContent = `${nk.gSatz}% vom Kaufpreis`;
-            document.getElementById('notarkosten').textContent = formatEuro(nk.notar + nk.grundbuch);
-            document.getElementById('maklerkosten').textContent = state.mitMakler ? formatEuro(nk.makler) : '—';
-            document.getElementById('empfohlenesEK').textContent = formatEuro(nk.gesamt + state.kaufpreis * 0.2);
+            // Gauge (Belastungsquote)
+            const belastung = Math.min((d.monthly/state.netto)*100, 100);
+            document.getElementById('gaugeArc').setAttribute('stroke-dasharray', `${belastung}, 100`);
+            document.getElementById('gaugeArc').setAttribute('stroke', belastung>40?'#ef4444':belastung>30?'#f59e0b':'#10b981');
+            document.getElementById('gaugeText').textContent = Math.round(belastung)+'%';
 
-            // Vergleich
-            const v2 = calculateLoan(Math.min(state.tilgung + 1, 10));
-            document.getElementById('v1Rate').textContent = formatEuroDetailed(data.monthlyPayment) + '/Monat';
-            document.getElementById('v1Zinsen').textContent = formatEuro(data.totalInterest);
-            document.getElementById('v1Laufzeit').textContent = data.gesamtlaufzeit + ' Jahre';
-            document.getElementById('v2Rate').textContent = formatEuroDetailed(v2.monthlyPayment) + '/Monat';
-            document.getElementById('v2Zinsen').textContent = formatEuro(v2.totalInterest);
-            document.getElementById('v2Laufzeit').textContent = v2.gesamtlaufzeit + ' Jahre';
-            document.getElementById('ersparnis').textContent = `Sie sparen: ${formatEuro(data.totalInterest - v2.totalInterest)}`;
+            // Legends
+            document.getElementById('legendTilgung').textContent = fE(d.darlehen);
+            document.getElementById('legendZinsen').textContent = fE(d.totalInterest);
+            document.getElementById('legendNebenkosten').textContent = fE(nk.gesamt);
+
+            // Nebenkosten Page
+            document.getElementById('nkTotal').textContent = fE(nk.gesamt);
+            document.getElementById('nkProzent').textContent = ((nk.gesamt/state.kaufpreis)*100).toFixed(1)+'% vom Kaufpreis';
+            document.getElementById('nkGrund').textContent = fE(nk.grund);
+            document.getElementById('nkGrundInfo').textContent = `${nk.gs}% vom Kaufpreis`;
+            document.getElementById('nkNotar').textContent = fE(nk.notar+nk.gb);
+            document.getElementById('nkMakler').textContent = state.mitMakler ? fE(nk.makler) : '—';
+
+            // EK Ring
+            const ekCover = Math.min((state.eigenkapital/nk.gesamt)*100, 100);
+            document.getElementById('ekRing').style.strokeDasharray = `${ekCover} 100`;
+            document.getElementById('ekRing').setAttribute('stroke', ekCover>=100?'#10b981':ekCover>=50?'#f59e0b':'#ef4444');
+            document.getElementById('ekRingText').textContent = Math.round(ekCover)+'%';
+
+            const diff = state.eigenkapital - nk.gesamt;
+            document.getElementById('ekCheckText').textContent = diff>=0
+                ? `Nebenkosten gedeckt. ${fE(diff)} Überschuss für Tilgung.`
+                : `Es fehlen noch ${fE(Math.abs(diff))} für die Nebenkosten.`;
+            document.getElementById('ekStatusCard').className = `card p-5 border-l-4 ${diff>=0?'border-l-emerald-500':'border-l-rose-500'}`;
+
+            // Advice
+            const empfohlen = nk.gesamt + state.kaufpreis*0.2;
+            document.getElementById('nkAdvice').innerHTML = diff >= 0
+                ? `<p class="text-sm text-emerald-300"><strong>Gut:</strong> Ihr EK deckt die Nebenkosten. Ideal wären ${fE(empfohlen)} (NK + 20%).</p>`
+                : `<p class="text-sm text-rose-300"><strong>Achtung:</strong> Eigenkapital reicht nicht für Nebenkosten. Empfohlen: min. ${fE(nk.gesamt)}</p>`;
+
+            // Sums
+            document.getElementById('sumKaufpreis').textContent = fE(state.kaufpreis);
+            document.getElementById('sumNebenkosten').textContent = fE(nk.gesamt);
+            document.getElementById('sumGesamt').textContent = fE(state.kaufpreis+nk.gesamt);
+            document.getElementById('sumEK').textContent = fE(state.eigenkapital);
+            document.getElementById('sumDarlehen').textContent = fE(d.darlehen);
+
+            // Comparison
+            const c1=d, c2=calcLoan({tilgung:Math.min(state.tilgung+1,10)});
+            const c3=calcLoan({rate:Math.max(state.rate-0.5,0.5)});
+            const c4=calcLoan({sondertilgung:5000});
+
+            document.getElementById('c1Rate').textContent = fE2(c1.monthly)+'/Mon.';
+            document.getElementById('c1Zinsen').textContent = fE(c1.totalInterest);
+            document.getElementById('c1Laufzeit').textContent = c1.laufzeit+' J.';
+            document.getElementById('c1Rest').textContent = fE(c1.restschuld);
+
+            document.getElementById('c2Rate').textContent = fE2(c2.monthly)+'/Mon.';
+            document.getElementById('c2Zinsen').textContent = fE(c2.totalInterest);
+            document.getElementById('c2Laufzeit').textContent = c2.laufzeit+' J.';
+            document.getElementById('c2Rest').textContent = fE(c2.restschuld);
+            document.getElementById('c2Save').textContent = `Ersparnis: ${fE(c1.totalInterest-c2.totalInterest)}`;
+
+            document.getElementById('c3Rate').textContent = fE2(c3.monthly)+'/Mon.';
+            document.getElementById('c3Zinsen').textContent = fE(c3.totalInterest);
+            document.getElementById('c3Laufzeit').textContent = c3.laufzeit+' J.';
+            document.getElementById('c3Rest').textContent = fE(c3.restschuld);
+            document.getElementById('c3Save').textContent = `Ersparnis: ${fE(c1.totalInterest-c3.totalInterest)}`;
+
+            document.getElementById('c4Rate').textContent = fE2(c4.monthly)+'/Mon.';
+            document.getElementById('c4Zinsen').textContent = fE(c4.totalInterest);
+            document.getElementById('c4Laufzeit').textContent = c4.laufzeit+' J.';
+            document.getElementById('c4Rest').textContent = fE(c4.restschuld);
+            document.getElementById('c4Save').textContent = `Ersparnis: ${fE(c1.totalInterest-c4.totalInterest)}`;
 
             // Print
             document.getElementById('printDate').textContent = new Date().toLocaleDateString('de-DE');
-            document.getElementById('printKaufpreis').textContent = formatEuro(state.kaufpreis);
-            document.getElementById('printEigenkapital').textContent = formatEuro(state.eigenkapital);
-            document.getElementById('printDarlehen').textContent = formatEuro(data.darlehen);
-            document.getElementById('printZins').textContent = formatPercent(state.rate);
-            document.getElementById('printTilgung').textContent = formatPercent(state.tilgung);
-            document.getElementById('printZinsbindung').textContent = state.zinsbindung + ' Jahre';
-            document.getElementById('printRate').textContent = formatEuroDetailed(data.monthlyPayment);
-            document.getElementById('printGesamtzinsen').textContent = formatEuro(data.totalInterest);
-            document.getElementById('printGesamtkosten').textContent = formatEuro(data.totalPayment);
-            document.getElementById('printRestschuld').textContent = formatEuro(data.restschuldNachBindung);
-            document.getElementById('printLaufzeit').textContent = data.gesamtlaufzeit + ' Jahre';
-            document.getElementById('printGrunderwerbsteuer').textContent = formatEuro(nk.grunderwerbsteuer);
-            document.getElementById('printNotar').textContent = formatEuro(nk.notar + nk.grundbuch);
-            document.getElementById('printMakler').textContent = state.mitMakler ? formatEuro(nk.makler) : '—';
-            document.getElementById('printNebenkostenGesamt').textContent = formatEuro(nk.gesamt);
+            document.getElementById('printParams').innerHTML = `
+                <tr><td class="py-1 text-slate-500">Kaufpreis:</td><td class="text-right font-bold">${fE(state.kaufpreis)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Eigenkapital:</td><td class="text-right font-bold">${fE(state.eigenkapital)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Darlehensbetrag:</td><td class="text-right font-bold">${fE(d.darlehen)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Sollzins:</td><td class="text-right font-bold">${fP(state.rate)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Tilgung:</td><td class="text-right font-bold">${fP(state.tilgung)}</td></tr>
+            `;
+            document.getElementById('printResults').innerHTML = `
+                <tr><td class="py-1 text-slate-500">Monatliche Rate:</td><td class="text-right font-bold text-emerald-600">${fE2(d.monthly)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Gesamtzinsen:</td><td class="text-right font-bold">${fE(d.totalInterest)}</td></tr>
+                <tr><td class="py-1 text-slate-500">Laufzeit:</td><td class="text-right font-bold">${d.laufzeit} Jahre</td></tr>
+            `;
 
-            updateChart(data);
-            updateTable(data);
+            updateCharts(d, c1, c2, c3, c4);
+            updateTable(d);
         }
 
-        // ==========================================
-        // === CHART ===
-        // ==========================================
+        // ========== CHARTS ==========
+        function initCharts() {
+            const ctxD = document.getElementById('donutChart').getContext('2d');
+            donutChart = new Chart(ctxD, {
+                type: 'doughnut',
+                data: { labels:['Tilgung','Zinsen','Nebenkosten'], datasets:[{data:[0,0,0],backgroundColor:['#10b981','#ef4444','#f59e0b'],borderWidth:0}] },
+                options: { responsive:true, maintainAspectRatio:true, cutout:'70%', plugins:{legend:{display:false}} }
+            });
 
-        function initChart() {
-            const ctx = document.getElementById('chart').getContext('2d');
-            chart = new Chart(ctx, {
+            const ctxL = document.getElementById('lineChart').getContext('2d');
+            lineChart = new Chart(ctxL, {
                 type: 'line',
-                data: { labels: [], datasets: [
-                    { label: 'Restschuld', data: [], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.1)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: 0 },
-                    { label: 'Getilgt', data: [], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: 0 }
+                data: { labels:[], datasets:[
+                    {label:'Restschuld',data:[],borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.1)',borderWidth:2,fill:true,tension:0.3,pointRadius:0},
+                    {label:'Getilgt',data:[],borderColor:'#10b981',backgroundColor:'rgba(16,185,129,0.1)',borderWidth:2,fill:true,tension:0.3,pointRadius:0}
                 ]},
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 12, padding: 15, color: '#94a3b8' } } },
-                    scales: {
-                        x: { grid: { display: false }, ticks: { color: '#64748b', maxRotation: 0, maxTicksLimit: 8 } },
-                        y: { grid: { color: 'rgba(100,116,139,0.2)' }, ticks: { color: '#64748b', callback: v => v >= 1000 ? (v/1000)+'k' : v } }
-                    }
+                options: { responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+                    plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:10,padding:10,color:'#94a3b8',font:{size:10}}}},
+                    scales:{ x:{grid:{display:false},ticks:{color:'#64748b',maxTicksLimit:8}}, y:{grid:{color:'rgba(100,116,139,0.15)'},ticks:{color:'#64748b',callback:v=>v>=1000?(v/1000)+'k':v}} }
+                }
+            });
+
+            const ctxC = document.getElementById('compareChart').getContext('2d');
+            compareChart = new Chart(ctxC, {
+                type: 'bar',
+                data: { labels:['Aktuell','+1% Tilg.','-0.5% Zins','5k Sondert.'], datasets:[{label:'Gesamtzinsen',data:[0,0,0,0],backgroundColor:['#64748b','#10b981','#0ea5e9','#8b5cf6']}] },
+                options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+                    scales:{ x:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:10}}}, y:{grid:{color:'rgba(100,116,139,0.15)'},ticks:{color:'#64748b',callback:v=>v>=1000?(v/1000)+'k':v}} }
                 }
             });
         }
 
-        function updateChart(data) {
-            if (!chart) return;
-            const labels = ['Start', ...data.yearlyData.map(d => d.year)];
-            chart.data.labels = labels;
-            chart.data.datasets[0].data = [data.darlehen, ...data.yearlyData.map(d => d.balance)];
-            chart.data.datasets[1].data = [0, ...data.yearlyData.map(d => data.darlehen - d.balance)];
-            chart.update('none');
+        function updateCharts(d, c1, c2, c3, c4) {
+            donutChart.data.datasets[0].data = [d.darlehen, d.totalInterest, d.nk.gesamt];
+            donutChart.update('none');
+
+            lineChart.data.labels = ['0',...d.years.map(y=>y.year)];
+            lineChart.data.datasets[0].data = [d.darlehen,...d.years.map(y=>y.balance)];
+            lineChart.data.datasets[1].data = [0,...d.years.map(y=>d.darlehen-y.balance)];
+            lineChart.update('none');
+
+            compareChart.data.datasets[0].data = [c1.totalInterest, c2.totalInterest, c3.totalInterest, c4.totalInterest];
+            compareChart.update('none');
         }
 
-        // ==========================================
-        // === TABLE ===
-        // ==========================================
-
-        function updateTable(data) {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = data.yearlyData.map(r => {
-                const highlight = r.year === state.zinsbindung ? 'bg-amber-500/10' : '';
-                return `<tr class="${highlight}">
-                    <td class="font-medium ${r.year === state.zinsbindung ? 'text-amber-400' : ''}">${r.year}${r.year === state.zinsbindung ? ' *' : ''}</td>
-                    <td class="text-rose-400">${formatEuro(r.interest)}</td>
-                    <td class="text-emerald-400">${formatEuro(r.principal + r.extra)}</td>
-                    <td class="text-right font-semibold">${formatEuro(r.balance)}</td>
-                </tr>`;
+        function updateTable(d) {
+            document.getElementById('tableBody').innerHTML = d.years.map(r => {
+                const hl = r.year===state.zinsbindung ? 'bg-amber-500/10' : '';
+                return `<tr class="${hl}"><td class="${r.year===state.zinsbindung?'text-amber-400 font-bold':''}">${r.year}</td><td class="text-rose-400">${fE(r.interest)}</td><td class="text-emerald-400">${fE(r.principal)}</td><td class="text-right font-bold">${fE(r.balance)}</td></tr>`;
             }).join('');
         }
 
-        // ==========================================
-        // === NAVIGATION ===
-        // ==========================================
-
-        function initNavigation() {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const navBtns = document.querySelectorAll('.nav-btn');
-            const pages = document.querySelectorAll('.page');
-
-            function switchPage(pageName) {
-                pages.forEach(p => p.classList.remove('active'));
-                document.getElementById('page-' + pageName)?.classList.add('active');
-
-                tabBtns.forEach(b => b.classList.toggle('active', b.dataset.page === pageName));
-                navBtns.forEach(b => b.classList.toggle('active', b.dataset.page === pageName));
-
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            tabBtns.forEach(btn => btn.addEventListener('click', () => switchPage(btn.dataset.page)));
-            navBtns.forEach(btn => btn.addEventListener('click', () => switchPage(btn.dataset.page)));
-        }
-
-        // ==========================================
-        // === LOCAL STORAGE ===
-        // ==========================================
-
-        function saveToLocal() {
-            localStorage.setItem('finanzplaner_config', JSON.stringify(state));
-            localStorage.setItem('finanzplaner_saved', new Date().toISOString());
-            showToast('Konfiguration gespeichert');
-            updateLastSaved();
-        }
-
-        function loadFromLocal() {
-            const saved = localStorage.getItem('finanzplaner_config');
-            if (saved) {
-                Object.assign(state, JSON.parse(saved));
-                syncInputs();
-                updateUI();
-                showToast('Konfiguration geladen');
-            } else {
-                showToast('Keine gespeicherte Konfiguration gefunden');
-            }
-        }
-
-        function updateLastSaved() {
-            const saved = localStorage.getItem('finanzplaner_saved');
-            const el = document.getElementById('lastSaved');
-            if (saved) {
-                el.textContent = 'Zuletzt gespeichert: ' + new Date(saved).toLocaleString('de-DE');
-            }
-        }
-
-        function syncInputs() {
-            document.getElementById('kaufpreis').value = state.kaufpreis;
-            document.getElementById('eigenkapital').value = state.eigenkapital;
-            document.getElementById('rate').value = state.rate;
-            document.getElementById('zinsbindung').value = state.zinsbindung;
-            document.getElementById('tilgung').value = state.tilgung;
-            document.getElementById('sondertilgung').value = state.sondertilgung;
-            document.getElementById('bundesland').value = state.bundesland;
-            document.getElementById('mitMakler').checked = state.mitMakler;
-        }
-
-        // ==========================================
-        // === JSON EXPORT/IMPORT ===
-        // ==========================================
-
-        function exportJSON() {
-            const data = { ...state, exportDate: new Date().toISOString(), version: '1.0' };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'finanzplaner_' + new Date().toISOString().slice(0,10) + '.json';
-            link.click();
-            showToast('JSON exportiert');
-        }
-
-        function showImportModal() {
-            document.getElementById('importModal').classList.add('show');
-            document.getElementById('importData').value = '';
-        }
-
-        function closeImportModal() {
-            document.getElementById('importModal').classList.remove('show');
-        }
-
-        function importConfig() {
-            try {
-                const data = JSON.parse(document.getElementById('importData').value);
-                const keys = ['kaufpreis', 'eigenkapital', 'rate', 'zinsbindung', 'tilgung', 'sondertilgung', 'bundesland', 'mitMakler'];
-                keys.forEach(k => { if (data[k] !== undefined) state[k] = data[k]; });
-                syncInputs();
-                updateUI();
-                closeImportModal();
-                showToast('Konfiguration importiert');
-            } catch (e) {
-                showToast('Fehler: Ungültiges JSON-Format');
-            }
-        }
-
-        // ==========================================
-        // === CSV EXPORT ===
-        // ==========================================
-
-        function exportCSV() {
-            const data = calculateLoan();
-            let csv = 'Jahr;Zinsen;Tilgung;Sondertilgung;Restschuld\n';
-            data.yearlyData.forEach(r => {
-                csv += `${r.year};${r.interest.toFixed(2)};${r.principal.toFixed(2)};${r.extra.toFixed(2)};${r.balance.toFixed(2)}\n`;
+        // ========== NAVIGATION ==========
+        function initNav() {
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+                    document.getElementById('page-'+btn.dataset.page)?.classList.add('active');
+                    window.scrollTo({top:0,behavior:'smooth'});
+                });
             });
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'tilgungsplan.csv';
-            link.click();
-            showToast('CSV exportiert');
         }
 
-        // ==========================================
-        // === MODALS ===
-        // ==========================================
+        // ========== STORAGE ==========
+        function saveLocal() { localStorage.setItem('fp_config',JSON.stringify(state)); localStorage.setItem('fp_time',new Date().toISOString()); toast('Gespeichert'); updateLastSaved(); }
+        function loadLocal() { const s=localStorage.getItem('fp_config'); if(s){Object.assign(state,JSON.parse(s));sync();updateUI();toast('Geladen');}else{toast('Keine Daten');} }
+        function updateLastSaved() { const t=localStorage.getItem('fp_time'); if(t) document.getElementById('lastSaved').textContent='Zuletzt: '+new Date(t).toLocaleString('de-DE'); }
+        function exportJSON() { const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='finanzplaner.json'; a.click(); toast('Exportiert'); }
+        function importConfig() { try { const d=JSON.parse(document.getElementById('importData').value); Object.keys(state).forEach(k=>{if(d[k]!==undefined)state[k]=d[k];}); sync(); updateUI(); closeModal('importModal'); toast('Importiert'); } catch(e) { toast('Fehler'); } }
+        function exportCSV() { const d=calcLoan(); let csv='Jahr;Zinsen;Tilgung;Restschuld\n'; d.years.forEach(r=>{csv+=`${r.year};${r.interest.toFixed(2)};${r.principal.toFixed(2)};${r.balance.toFixed(2)}\n`;}); const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='tilgungsplan.csv'; a.click(); toast('CSV exportiert'); }
 
-        function showDatenschutz() { document.getElementById('datenschutzModal').classList.add('show'); }
-        function closeDatenschutz() { document.getElementById('datenschutzModal').classList.remove('show'); }
-        function showImpressum() { document.getElementById('impressumModal').classList.add('show'); }
-        function closeImpressum() { document.getElementById('impressumModal').classList.remove('show'); }
-
-        // ==========================================
-        // === TOAST ===
-        // ==========================================
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+        function sync() {
+            document.getElementById('kaufpreis').value=state.kaufpreis;
+            document.getElementById('eigenkapital').value=state.eigenkapital;
+            document.getElementById('rate').value=state.rate;
+            document.getElementById('zinsbindung').value=state.zinsbindung;
+            document.getElementById('tilgung').value=state.tilgung;
+            document.getElementById('sondertilgung').value=state.sondertilgung;
+            document.getElementById('bundesland').value=state.bundesland;
+            document.getElementById('mitMakler').checked=state.mitMakler;
+            document.getElementById('nettoEinkommen').value=state.netto;
         }
 
-        // ==========================================
-        // === EVENT LISTENERS ===
-        // ==========================================
+        // ========== MODALS & TOAST ==========
+        function openModal(id) { document.getElementById(id).classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        function toast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2000); }
 
+        // ========== PWA ==========
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt=e; document.getElementById('installBtn').classList.add('show'); });
+        function installPWA() { if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBtn').classList.remove('show');});} }
+        if('serviceWorker' in navigator) { const sw=`const C='fp-v3';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])));self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('./'))))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))))})`; navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{}); }
+
+        // ========== LISTENERS ==========
         function initListeners() {
-            const inputs = [
-                { id: 'kaufpreis', key: 'kaufpreis' },
-                { id: 'eigenkapital', key: 'eigenkapital' },
-                { id: 'rate', key: 'rate' },
-                { id: 'zinsbindung', key: 'zinsbindung' },
-                { id: 'tilgung', key: 'tilgung' },
-                { id: 'sondertilgung', key: 'sondertilgung' }
-            ];
-
-            inputs.forEach(({ id, key }) => {
+            ['kaufpreis','eigenkapital','rate','zinsbindung','tilgung','sondertilgung','nettoEinkommen'].forEach(id => {
                 document.getElementById(id).addEventListener('input', e => {
-                    state[key] = parseFloat(e.target.value);
+                    state[id==='nettoEinkommen'?'netto':id] = parseFloat(e.target.value);
                     updateUI();
                 });
             });
-
-            document.getElementById('bundesland').addEventListener('change', e => {
-                state.bundesland = e.target.value;
-                updateUI();
-            });
-
-            document.getElementById('mitMakler').addEventListener('change', e => {
-                state.mitMakler = e.target.checked;
-                updateUI();
-            });
+            document.getElementById('bundesland').addEventListener('change', e => { state.bundesland=e.target.value; updateUI(); });
+            document.getElementById('mitMakler').addEventListener('change', e => { state.mitMakler=e.target.checked; updateUI(); });
         }
 
-        // ==========================================
-        // === PWA ===
-        // ==========================================
-
-        if ('serviceWorker' in navigator) {
-            const sw = `const C='fp-v2';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])));self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('./'))))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))))})`;
-            navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw], { type: 'application/javascript' }))).catch(() => {});
-        }
-
-        // ==========================================
-        // === INIT ===
-        // ==========================================
-
+        // ========== INIT ==========
         window.addEventListener('load', () => {
-            initChart();
-            initNavigation();
+            initCharts();
+            initNav();
             initListeners();
+            const saved = localStorage.getItem('fp_config');
+            if(saved) { Object.assign(state, JSON.parse(saved)); sync(); }
             updateUI();
             updateLastSaved();
-
-            // Auto-load saved config
-            const saved = localStorage.getItem('finanzplaner_config');
-            if (saved) {
-                Object.assign(state, JSON.parse(saved));
-                syncInputs();
-                updateUI();
-            }
         });
     </script>
 </body>
