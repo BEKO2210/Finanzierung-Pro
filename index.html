@@ -114,61 +114,6 @@
 
         select:focus { outline: none; border-color: var(--primary); }
 
-        /* Uiverse.io Toggle */
-        .uiverse-toggle {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        .uiverse-toggle input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .uiverse-toggle-track {
-            width: 52px;
-            height: 52px;
-            background: #fb7185;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(251, 113, 133, 0.4);
-            transition: all 0.3s ease;
-        }
-        .uiverse-toggle-track::after {
-            content: '';
-            width: 44px;
-            height: 44px;
-            background: #f8fafc;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s ease;
-            transform: rotate(-180deg);
-        }
-        .uiverse-toggle input:checked + .uiverse-toggle-track {
-            background: var(--primary);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-        .uiverse-toggle input:checked + .uiverse-toggle-track::after {
-            transform: rotate(0deg);
-        }
-        .uiverse-toggle:hover .uiverse-toggle-track::after {
-            transform: scale(0.85) rotate(-180deg);
-        }
-        .uiverse-toggle input:checked + .uiverse-toggle-track:hover::after {
-            transform: scale(0.85) rotate(0deg);
-        }
-        .uiverse-toggle-icon {
-            position: absolute;
-            font-size: 20px;
-            z-index: 1;
-            pointer-events: none;
-        }
 
         /* Accordion */
         .accordion {
@@ -625,10 +570,9 @@
                             <span class="text-sm text-slate-200 font-semibold block">Maklergebühr</span>
                             <span class="text-xs text-slate-500">3,57% inkl. MwSt.</span>
                         </div>
-                        <label class="uiverse-toggle">
-                            <input type="checkbox" id="mitMakler" checked>
-                            <div class="uiverse-toggle-track"></div>
-                            <span id="maklerIcon" class="uiverse-toggle-icon">✔️</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="mitMakler" checked class="sr-only peer">
+                            <div class="peer ring-0 bg-rose-400 rounded-full outline-none duration-300 after:duration-500 w-12 h-12 shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-10 after:w-10 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0"></div>
                         </label>
                     </div>
 
@@ -1160,15 +1104,6 @@
             });
         }
 
-        // ========== MAKLER TOGGLE ICON ==========
-        function updateMaklerIcon() {
-            const checkbox = document.getElementById('mitMakler');
-            const icon = document.getElementById('maklerIcon');
-            if (icon) {
-                icon.textContent = checkbox.checked ? '✔️' : '✖️';
-            }
-        }
-
         // ========== NAVIGATION ==========
         function initNav() {
             document.querySelectorAll('.nav-item').forEach(btn => {
@@ -1200,7 +1135,6 @@
             document.getElementById('bundesland').value=state.bundesland;
             document.getElementById('mitMakler').checked=state.mitMakler;
             document.getElementById('nettoEinkommen').value=state.netto;
-            if (typeof updateMaklerIcon === 'function') updateMaklerIcon();
         }
 
         // ========== MODALS & TOAST ==========
@@ -1223,7 +1157,7 @@
                 });
             });
             document.getElementById('bundesland').addEventListener('change', e => { state.bundesland=e.target.value; updateUI(); });
-            document.getElementById('mitMakler').addEventListener('change', e => { state.mitMakler=e.target.checked; updateMaklerIcon(); updateUI(); });
+            document.getElementById('mitMakler').addEventListener('change', e => { state.mitMakler=e.target.checked; updateUI(); });
         }
 
         // ========== INIT ==========
@@ -1234,7 +1168,6 @@
             const saved = localStorage.getItem('fp_config');
             if(saved) { Object.assign(state, JSON.parse(saved)); sync(); }
             updateUI();
-            updateMaklerIcon();
             updateLastSaved();
         });
     </script>
