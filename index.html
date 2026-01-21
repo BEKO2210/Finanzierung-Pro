@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Professioneller Baufinanzierungsrechner für Deutschland mit Nebenkosten, KfW-Förderung und Tilgungsplan">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FinanzPlaner">
+
+    <title>FinanzPlaner Pro | Baufinanzierungsrechner Deutschland</title>
+
+    <!-- PWA Manifest (inline) -->
+    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22FinanzPlaner%20Pro%22%2C%22short_name%22%3A%22FinanzPlaner%22%2C%22description%22%3A%22Professioneller%20Baufinanzierungsrechner%20f%C3%BCr%20Deutschland%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22orientation%22%3A%22portrait-primary%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520fill%3D%27%25230f172a%27%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%2780%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27340%27%2520font-size%3D%27280%27%2520text-anchor%3D%27middle%27%2520fill%3D%27%252338bdf8%27%253E%25E2%2582%25AC%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100' rx='20'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='%2338bdf8'>€</text></svg>">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%230f172a' width='180' height='180' rx='40'/><text x='90' y='125' font-size='100' text-anchor='middle' fill='%2338bdf8'>€</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === UIVERSE.IO INSPIRED EFFECTS === */
+
+        /* Animated Background Gradient */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(129, 140, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Glassmorphism Cards - Enhanced */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                0 2px 4px -1px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow:
+                0 10px 40px -10px rgba(56, 189, 248, 0.2),
+                0 4px 6px -1px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Glowing Text Effect */
+        .highlight-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Glow Button - Uiverse Style */
+        .glow-btn {
+            position: relative;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            color: white;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .glow-btn:hover::before {
+            left: 100%;
+        }
+
+        .glow-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+        }
+
+        .glow-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Custom Slider - Uiverse Inspired */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            cursor: pointer;
+            margin-top: -9px;
+            box-shadow:
+                0 0 20px rgba(56, 189, 248, 0.6),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow:
+                0 0 30px rgba(56, 189, 248, 0.8),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+            border-radius: 4px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Animated Card Border */
+        .card-glow {
+            position: relative;
+        }
+
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #38bdf8, #818cf8, #34d399, #38bdf8);
+            background-size: 400% 400%;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: borderGlow 4s linear infinite;
+        }
+
+        .card-glow:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Pulse Animation */
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Number Counter Animation */
+        .number-animate {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Select Dropdown Styling */
+        select {
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        select:hover, select:focus {
+            border-color: rgba(56, 189, 248, 0.5);
+            outline: none;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Checkbox Toggle - Uiverse Style */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #334155;
+            transition: 0.3s;
+            border-radius: 26px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background: #64748b;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+            background: white;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Table Styling */
+        .data-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .data-table tr {
+            transition: all 0.2s ease;
+        }
+
+        .data-table tr:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 12px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: calc(100% + 8px);
+        }
+
+        /* PWA Install Banner */
+        .install-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        /* Tab Navigation */
+        .tab-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.2) 100%);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+        }
+
+        .tab-btn:not(.active):hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(56, 189, 248, 0.2);
+            border-top-color: #38bdf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Info Card Icon */
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            font-size: 11px;
+            cursor: help;
+            margin-left: 6px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; color: black; }
+            .glass-panel { background: white; border: 1px solid #ddd; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-6 lg:p-8">
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- PWA Install Banner (hidden by default) -->
+    <div id="installBanner" class="install-banner hidden no-print">
+        <div class="glass-panel rounded-2xl p-4 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-500 flex items-center justify-center text-2xl">€</div>
+            <div>
+                <p class="font-semibold text-white">App installieren</p>
+                <p class="text-xs text-slate-400">Offline nutzen & schneller Zugriff</p>
+            </div>
+            <button id="installBtn" class="glow-btn text-sm px-4 py-2">Installieren</button>
+            <button id="dismissInstall" class="text-slate-500 hover:text-white p-2">✕</button>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 fade-in">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <span class="float">💶</span>
+                    Finanz<span class="highlight-text">Planer</span> Pro
+                </h1>
+                <p class="text-slate-400 text-sm mt-2">Baufinanzierungsrechner für Deutschland | Alle Nebenkosten inklusive</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+                    Live Berechnung
+                </span>
+                <button onclick="window.print()" class="p-2 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 transition-colors no-print tooltip" data-tip="Drucken">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="mb-6 flex gap-2 overflow-x-auto pb-2 no-print fade-in" style="animation-delay: 0.05s;">
+            <button class="tab-btn active" data-tab="calculator">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    Rechner
+                </span>
+            </button>
+            <button class="tab-btn" data-tab="nebenkosten">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    Nebenkosten
+                </span>
+            </button>
+            <button class="tab-btn" data-tab="vergleich">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    Vergleich
+                </span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Left Column: Controls -->
+            <div class="lg:col-span-4 space-y-6">
+
+                <!-- Main Input Card -->
+                <div class="glass-panel rounded-2xl p-6 fade-in" style="animation-delay: 0.1s;">
+                    <h2 class="text-lg font-semibold mb-6 flex items-center text-white">
+                        <svg class="w-5 h-5 mr-2 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                        Finanzierungsparameter
+                    </h2>
+
+                    <!-- Kaufpreis / Darlehensbetrag -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Kaufpreis / Objektwert
+                                <span class="info-icon tooltip" data-tip="Gesamtpreis der Immobilie">?</span>
+                            </label>
+                            <span id="displayKaufpreis" class="text-sm font-bold text-sky-400">€300.000</span>
+                        </div>
+                        <input type="range" id="kaufpreis" min="50000" max="2000000" step="10000" value="300000">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>€50k</span>
+                            <span>€2M</span>
+                        </div>
+                    </div>
+
+                    <!-- Eigenkapital -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Eigenkapital
+                                <span class="info-icon tooltip" data-tip="Empfohlen: mind. 20% + Nebenkosten">?</span>
+                            </label>
+                            <span id="displayEigenkapital" class="text-sm font-bold text-emerald-400">€60.000</span>
+                        </div>
+                        <input type="range" id="eigenkapital" min="0" max="500000" step="5000" value="60000">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>€0</span>
+                            <span>€500k</span>
+                        </div>
+                        <p id="eigenkapitalQuote" class="text-xs text-slate-500 mt-1">Eigenkapitalquote: 20%</p>
+                    </div>
+
+                    <!-- Zinssatz -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Sollzins (p.a.)
+                                <span class="info-icon tooltip" data-tip="Aktueller Marktzins ca. 3,5-4%">?</span>
+                            </label>
+                            <span id="displayRate" class="text-sm font-bold text-sky-400">3,50%</span>
+                        </div>
+                        <input type="range" id="rate" min="0.5" max="8" step="0.05" value="3.5">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>0,5%</span>
+                            <span>8%</span>
+                        </div>
+                    </div>
+
+                    <!-- Zinsbindung -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Zinsbindung
+                                <span class="info-icon tooltip" data-tip="Zeitraum mit festem Zinssatz">?</span>
+                            </label>
+                            <span id="displayZinsbindung" class="text-sm font-bold text-sky-400">15 Jahre</span>
+                        </div>
+                        <input type="range" id="zinsbindung" min="5" max="30" step="1" value="15">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>5 J</span>
+                            <span>30 J</span>
+                        </div>
+                    </div>
+
+                    <!-- Anfängliche Tilgung -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Anfängliche Tilgung
+                                <span class="info-icon tooltip" data-tip="Empfohlen: mind. 2% p.a.">?</span>
+                            </label>
+                            <span id="displayTilgung" class="text-sm font-bold text-sky-400">2,00%</span>
+                        </div>
+                        <input type="range" id="tilgung" min="1" max="10" step="0.1" value="2">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>1%</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+
+                    <!-- Sondertilgung -->
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-slate-300 flex items-center">
+                                Jährliche Sondertilgung
+                                <span class="info-icon tooltip" data-tip="Meist bis 5% p.a. kostenfrei">?</span>
+                            </label>
+                            <span id="displaySondertilgung" class="text-sm font-bold text-emerald-400">€0</span>
+                        </div>
+                        <input type="range" id="sondertilgung" min="0" max="20000" step="500" value="0">
+                        <div class="flex justify-between mt-1 text-xs text-slate-500">
+                            <span>€0</span>
+                            <span>€20k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deutschland-spezifische Optionen -->
+                <div class="glass-panel rounded-2xl p-6 fade-in" style="animation-delay: 0.15s;">
+                    <h2 class="text-lg font-semibold mb-4 flex items-center text-white">
+                        <svg class="w-5 h-5 mr-2 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path></svg>
+                        Standort & Optionen
+                    </h2>
+
+                    <!-- Bundesland -->
+                    <div class="mb-4">
+                        <label class="text-sm font-medium text-slate-300 block mb-2">Bundesland</label>
+                        <select id="bundesland" class="w-full">
+                            <option value="BW">Baden-Württemberg (5,0%)</option>
+                            <option value="BY">Bayern (3,5%)</option>
+                            <option value="BE">Berlin (6,0%)</option>
+                            <option value="BB">Brandenburg (6,5%)</option>
+                            <option value="HB">Bremen (5,0%)</option>
+                            <option value="HH">Hamburg (5,5%)</option>
+                            <option value="HE">Hessen (6,0%)</option>
+                            <option value="MV">Mecklenburg-Vorpommern (6,0%)</option>
+                            <option value="NI">Niedersachsen (5,0%)</option>
+                            <option value="NW" selected>Nordrhein-Westfalen (6,5%)</option>
+                            <option value="RP">Rheinland-Pfalz (5,0%)</option>
+                            <option value="SL">Saarland (6,5%)</option>
+                            <option value="SN">Sachsen (5,5%)</option>
+                            <option value="ST">Sachsen-Anhalt (5,0%)</option>
+                            <option value="SH">Schleswig-Holstein (6,5%)</option>
+                            <option value="TH">Thüringen (5,0%)</option>
+                        </select>
+                    </div>
+
+                    <!-- Toggles -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-slate-300 flex items-center">
+                                Makler einbeziehen
+                                <span class="info-icon tooltip" data-tip="Ca. 3,57% inkl. MwSt.">?</span>
+                            </label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="mitMakler" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm text-slate-300 flex items-center">
+                                KfW-Förderung
+                                <span class="info-icon tooltip" data-tip="Günstige Kredite für energieeffizientes Bauen">?</span>
+                            </label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="kfwFoerderung">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- KfW Options (hidden by default) -->
+                    <div id="kfwOptions" class="mt-4 pt-4 border-t border-slate-700 hidden">
+                        <label class="text-sm font-medium text-slate-300 block mb-2">KfW-Programm</label>
+                        <select id="kfwProgramm" class="w-full">
+                            <option value="124">KfW 124 - Wohneigentum (max. €100.000)</option>
+                            <option value="261">KfW 261 - Klimafreundlicher Neubau</option>
+                            <option value="297">KfW 297/298 - Sanierung</option>
+                        </select>
+                        <p class="text-xs text-emerald-400 mt-2">💡 KfW-Zinsen oft 0,5-1% günstiger</p>
+                    </div>
+                </div>
+
+                <!-- Quick Summary Card -->
+                <div class="glass-panel rounded-2xl p-6 bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-l-4 border-sky-500 card-glow fade-in" style="animation-delay: 0.2s;">
+                    <p class="text-slate-400 text-xs uppercase tracking-wider mb-1">Monatliche Rate</p>
+                    <h3 id="monthlyPayment" class="text-4xl font-bold text-white mb-2 number-animate">€0,00</h3>
+                    <div class="flex items-center gap-2 text-sm">
+                        <span class="text-slate-400">Darlehensbetrag:</span>
+                        <span id="darlehensSum" class="text-sky-400 font-semibold">€240.000</span>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-700">
+                        <div class="flex items-center text-emerald-400 text-xs">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span id="rateInfo">Optimale Rate berechnet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results & Charts -->
+            <div class="lg:col-span-8 space-y-6">
+
+                <!-- Nebenkosten Overview (Tab: Nebenkosten) -->
+                <div id="nebenkostenPanel" class="glass-panel rounded-2xl p-6 fade-in hidden" style="animation-delay: 0.25s;">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path></svg>
+                        Kaufnebenkosten im Detail
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800/50 rounded-xl p-4">
+                            <p class="text-slate-400 text-xs uppercase">Grunderwerbsteuer</p>
+                            <p id="grunderwerbsteuer" class="text-xl font-bold text-amber-400 mt-1">€0</p>
+                            <p id="grunderwerbsteuerProzent" class="text-xs text-slate-500">6,5% vom Kaufpreis</p>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-xl p-4">
+                            <p class="text-slate-400 text-xs uppercase">Notar & Grundbuch</p>
+                            <p id="notarkosten" class="text-xl font-bold text-amber-400 mt-1">€0</p>
+                            <p class="text-xs text-slate-500">Ca. 2% vom Kaufpreis</p>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-xl p-4">
+                            <p class="text-slate-400 text-xs uppercase">Maklergebühr</p>
+                            <p id="maklerkosten" class="text-xl font-bold text-amber-400 mt-1">€0</p>
+                            <p class="text-xs text-slate-500">3,57% inkl. MwSt.</p>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-xl p-4 border-2 border-amber-500/30">
+                            <p class="text-slate-400 text-xs uppercase">Gesamt Nebenkosten</p>
+                            <p id="nebenkostenGesamt" class="text-2xl font-bold text-amber-400 mt-1">€0</p>
+                            <p id="nebenkostenProzent" class="text-xs text-slate-500">0% vom Kaufpreis</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-sky-500/10 rounded-xl border border-sky-500/20">
+                        <p class="text-sm text-sky-300">
+                            <strong>💡 Tipp:</strong> Nebenkosten sollten idealerweise aus Eigenkapital bezahlt werden.
+                            Benötigtes Eigenkapital: <span id="empfohlenesEK" class="font-bold">€0</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Chart Area -->
+                <div id="chartPanel" class="glass-panel rounded-2xl p-6 fade-in" style="animation-delay: 0.25s;">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-white">Tilgungsverlauf & Restschuld</h3>
+                        <div class="flex gap-2 text-xs">
+                            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-sky-500"></span> Restschuld</span>
+                            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Getilgt</span>
+                        </div>
+                    </div>
+                    <div class="w-full h-[300px]">
+                        <canvas id="amortizationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Vergleich Panel -->
+                <div id="vergleichPanel" class="glass-panel rounded-2xl p-6 fade-in hidden" style="animation-delay: 0.25s;">
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        Tilgungsvergleich
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-4">Vergleich: 2% vs. 3% anfängliche Tilgung</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800/50 rounded-xl p-4 border-l-4 border-sky-500">
+                            <p class="text-slate-400 text-xs uppercase mb-2">Aktuelle Einstellung</p>
+                            <p class="text-2xl font-bold text-white" id="vergleich1Rate">€0/Monat</p>
+                            <p class="text-sm text-slate-400 mt-2">Gesamtzinsen: <span id="vergleich1Zinsen" class="text-rose-400">€0</span></p>
+                            <p class="text-sm text-slate-400">Laufzeit: <span id="vergleich1Laufzeit" class="text-sky-400">0 Jahre</span></p>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-xl p-4 border-l-4 border-emerald-500">
+                            <p class="text-slate-400 text-xs uppercase mb-2">Mit 1% mehr Tilgung</p>
+                            <p class="text-2xl font-bold text-white" id="vergleich2Rate">€0/Monat</p>
+                            <p class="text-sm text-slate-400 mt-2">Gesamtzinsen: <span id="vergleich2Zinsen" class="text-rose-400">€0</span></p>
+                            <p class="text-sm text-slate-400">Laufzeit: <span id="vergleich2Laufzeit" class="text-emerald-400">0 Jahre</span></p>
+                            <p class="text-xs text-emerald-400 mt-2" id="vergleichErsparnis">💰 Sie sparen: €0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-panel rounded-2xl p-5 fade-in" style="animation-delay: 0.3s;">
+                        <p class="text-slate-400 text-xs uppercase tracking-wider">Gesamtzinsen</p>
+                        <h3 id="totalInterest" class="text-2xl font-bold text-rose-400 mt-2">€0</h3>
+                        <div class="mt-3 w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                            <div id="interestBar" class="bg-gradient-to-r from-rose-500 to-rose-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2">Anteil an Gesamtkosten</p>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-5 fade-in" style="animation-delay: 0.35s;">
+                        <p class="text-slate-400 text-xs uppercase tracking-wider">Gesamtkosten</p>
+                        <h3 id="totalPayment" class="text-2xl font-bold text-white mt-2">€0</h3>
+                        <div class="mt-3 flex w-full h-1.5 rounded-full overflow-hidden">
+                            <div id="principalBar" class="bg-sky-500 h-full transition-all duration-500"></div>
+                            <div id="interestBar2" class="bg-rose-500 h-full transition-all duration-500"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-500 mt-2">
+                            <span>Tilgung</span>
+                            <span>Zinsen</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-5 fade-in" style="animation-delay: 0.4s;">
+                        <p class="text-slate-400 text-xs uppercase tracking-wider">Restschuld nach Zinsbindung</p>
+                        <h3 id="restschuld" class="text-2xl font-bold text-amber-400 mt-2">€0</h3>
+                        <p id="restschuldInfo" class="text-xs text-slate-500 mt-3">Nach 15 Jahren</p>
+                        <p id="getilgtInfo" class="text-xs text-emerald-400 mt-1">Bereits getilgt: €0</p>
+                    </div>
+                </div>
+
+                <!-- Amortization Table -->
+                <div class="glass-panel rounded-2xl p-6 overflow-hidden fade-in" style="animation-delay: 0.45s;">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-white">Jährliche Übersicht</h3>
+                        <button id="exportBtn" class="text-xs px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors flex items-center gap-1 no-print">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Export CSV
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto max-h-[400px] overflow-y-auto">
+                        <table class="w-full text-left data-table">
+                            <thead class="sticky top-0 bg-slate-800 z-10">
+                                <tr class="text-slate-400 text-xs border-b border-slate-700">
+                                    <th class="p-3 font-medium">Jahr</th>
+                                    <th class="p-3 font-medium">Rate/Jahr</th>
+                                    <th class="p-3 font-medium">Zinsen</th>
+                                    <th class="p-3 font-medium">Tilgung</th>
+                                    <th class="p-3 font-medium">Sondertilg.</th>
+                                    <th class="p-3 font-medium text-right">Restschuld</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scheduleBody" class="text-sm text-slate-300">
+                                <!-- Generated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 mb-6 text-center fade-in" style="animation-delay: 0.5s;">
+            <p class="text-slate-600 text-xs">&copy; 2026 FinanzPlaner Pro | Alle Berechnungen sind unverbindlich</p>
+            <p class="text-slate-700 text-xs mt-1">Erstellt mit 💙 für Deutschland</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // === 1. CONFIGURATION & STATE ===
+        // ==========================================
+
+        // Grunderwerbsteuer nach Bundesland (Stand 2024/2025)
+        const GRUNDERWERBSTEUER = {
+            'BW': 5.0, 'BY': 3.5, 'BE': 6.0, 'BB': 6.5, 'HB': 5.0,
+            'HH': 5.5, 'HE': 6.0, 'MV': 6.0, 'NI': 5.0, 'NW': 6.5,
+            'RP': 5.0, 'SL': 6.5, 'SN': 5.5, 'ST': 5.0, 'SH': 6.5, 'TH': 5.0
+        };
+
+        const NOTAR_PROZENT = 1.5;  // Notar ca. 1,5%
+        const GRUNDBUCH_PROZENT = 0.5;  // Grundbuch ca. 0,5%
+        const MAKLER_PROZENT = 3.57;  // Makler inkl. MwSt.
+
+        // Application State
+        const state = {
+            kaufpreis: 300000,
+            eigenkapital: 60000,
+            rate: 3.5,
+            zinsbindung: 15,
+            tilgung: 2.0,
+            sondertilgung: 0,
+            bundesland: 'NW',
+            mitMakler: true,
+            kfwFoerderung: false,
+            kfwProgramm: '124'
+        };
+
+        // ==========================================
+        // === 2. DOM ELEMENTS ===
+        // ==========================================
+
+        const els = {
+            // Inputs
+            kaufpreis: document.getElementById('kaufpreis'),
+            eigenkapital: document.getElementById('eigenkapital'),
+            rate: document.getElementById('rate'),
+            zinsbindung: document.getElementById('zinsbindung'),
+            tilgung: document.getElementById('tilgung'),
+            sondertilgung: document.getElementById('sondertilgung'),
+            bundesland: document.getElementById('bundesland'),
+            mitMakler: document.getElementById('mitMakler'),
+            kfwFoerderung: document.getElementById('kfwFoerderung'),
+            kfwProgramm: document.getElementById('kfwProgramm'),
+            kfwOptions: document.getElementById('kfwOptions'),
+
+            // Displays
+            displayKaufpreis: document.getElementById('displayKaufpreis'),
+            displayEigenkapital: document.getElementById('displayEigenkapital'),
+            displayRate: document.getElementById('displayRate'),
+            displayZinsbindung: document.getElementById('displayZinsbindung'),
+            displayTilgung: document.getElementById('displayTilgung'),
+            displaySondertilgung: document.getElementById('displaySondertilgung'),
+            eigenkapitalQuote: document.getElementById('eigenkapitalQuote'),
+
+            // Outputs
+            monthlyPayment: document.getElementById('monthlyPayment'),
+            darlehensSum: document.getElementById('darlehensSum'),
+            rateInfo: document.getElementById('rateInfo'),
+            totalInterest: document.getElementById('totalInterest'),
+            totalPayment: document.getElementById('totalPayment'),
+            restschuld: document.getElementById('restschuld'),
+            restschuldInfo: document.getElementById('restschuldInfo'),
+            getilgtInfo: document.getElementById('getilgtInfo'),
+
+            // Bars
+            interestBar: document.getElementById('interestBar'),
+            principalBar: document.getElementById('principalBar'),
+            interestBar2: document.getElementById('interestBar2'),
+
+            // Nebenkosten
+            grunderwerbsteuer: document.getElementById('grunderwerbsteuer'),
+            grunderwerbsteuerProzent: document.getElementById('grunderwerbsteuerProzent'),
+            notarkosten: document.getElementById('notarkosten'),
+            maklerkosten: document.getElementById('maklerkosten'),
+            nebenkostenGesamt: document.getElementById('nebenkostenGesamt'),
+            nebenkostenProzent: document.getElementById('nebenkostenProzent'),
+            empfohlenesEK: document.getElementById('empfohlenesEK'),
+
+            // Vergleich
+            vergleich1Rate: document.getElementById('vergleich1Rate'),
+            vergleich1Zinsen: document.getElementById('vergleich1Zinsen'),
+            vergleich1Laufzeit: document.getElementById('vergleich1Laufzeit'),
+            vergleich2Rate: document.getElementById('vergleich2Rate'),
+            vergleich2Zinsen: document.getElementById('vergleich2Zinsen'),
+            vergleich2Laufzeit: document.getElementById('vergleich2Laufzeit'),
+            vergleichErsparnis: document.getElementById('vergleichErsparnis'),
+
+            // Table
+            scheduleBody: document.getElementById('scheduleBody'),
+
+            // Panels
+            chartPanel: document.getElementById('chartPanel'),
+            nebenkostenPanel: document.getElementById('nebenkostenPanel'),
+            vergleichPanel: document.getElementById('vergleichPanel')
+        };
+
+        let myChart = null;
+
+        // ==========================================
+        // === 3. FORMATTERS ===
+        // ==========================================
+
+        const formatEuro = (num) => new Intl.NumberFormat('de-DE', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(num);
+
+        const formatEuroDetailed = (num) => new Intl.NumberFormat('de-DE', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(num);
+
+        const formatPercent = (num) => num.toFixed(2).replace('.', ',') + '%';
+
+        // ==========================================
+        // === 4. CALCULATIONS ===
+        // ==========================================
+
+        function calculateNebenkosten() {
+            const kaufpreis = state.kaufpreis;
+            const grunderwerbsteuerSatz = GRUNDERWERBSTEUER[state.bundesland];
+
+            const grunderwerbsteuer = kaufpreis * (grunderwerbsteuerSatz / 100);
+            const notar = kaufpreis * (NOTAR_PROZENT / 100);
+            const grundbuch = kaufpreis * (GRUNDBUCH_PROZENT / 100);
+            const makler = state.mitMakler ? kaufpreis * (MAKLER_PROZENT / 100) : 0;
+
+            const gesamt = grunderwerbsteuer + notar + grundbuch + makler;
+
+            return {
+                grunderwerbsteuer,
+                grunderwerbsteuerSatz,
+                notar,
+                grundbuch,
+                makler,
+                gesamt,
+                gesamtProzent: (gesamt / kaufpreis) * 100
+            };
+        }
+
+        function calculateLoan(customTilgung = null) {
+            const nebenkosten = calculateNebenkosten();
+            const darlehensbetrag = state.kaufpreis + nebenkosten.gesamt - state.eigenkapital;
+
+            if (darlehensbetrag <= 0) {
+                return {
+                    darlehensbetrag: 0,
+                    monthlyPayment: 0,
+                    totalInterest: 0,
+                    totalPayment: 0,
+                    yearlyData: [],
+                    restschuldNachBindung: 0,
+                    getilgtNachBindung: 0,
+                    gesamtlaufzeit: 0
+                };
+            }
+
+            const tilgungSatz = customTilgung !== null ? customTilgung : state.tilgung;
+            const P = darlehensbetrag;
+            const zinsSatz = state.rate / 100;
+            const tilgungProzent = tilgungSatz / 100;
+
+            // Annuitätendarlehen: Rate = Darlehen * (Zins + Tilgung) / 12
+            const jahresAnnuitaet = P * (zinsSatz + tilgungProzent);
+            const monthlyPayment = jahresAnnuitaet / 12;
+
+            // Tilgungsplan berechnen
+            let balance = P;
+            let totalInterest = 0;
+            let totalPrincipal = 0;
+            let yearlyData = [];
+            let restschuldNachBindung = P;
+            let getilgtNachBindung = 0;
+
+            const maxYears = 50; // Sicherheitslimit
+
+            for (let year = 1; year <= maxYears && balance > 0; year++) {
+                let yearInterest = 0;
+                let yearPrincipal = 0;
+                let yearExtra = 0;
+
+                for (let month = 1; month <= 12 && balance > 0; month++) {
+                    const interestPayment = balance * (zinsSatz / 12);
+                    let principalPayment = monthlyPayment - interestPayment;
+
+                    // Sondertilgung (einmal jährlich am Jahresende)
+                    let extraPayment = 0;
+                    if (month === 12 && state.sondertilgung > 0) {
+                        extraPayment = Math.min(state.sondertilgung, balance - principalPayment);
+                    }
+
+                    // Letzte Zahlung anpassen
+                    if (principalPayment + extraPayment > balance) {
+                        principalPayment = balance;
+                        extraPayment = 0;
+                    }
+
+                    balance -= (principalPayment + extraPayment);
+                    if (balance < 0) balance = 0;
+
+                    yearInterest += interestPayment;
+                    yearPrincipal += principalPayment;
+                    yearExtra += extraPayment;
+                    totalInterest += interestPayment;
+                    totalPrincipal += principalPayment + extraPayment;
+                }
+
+                yearlyData.push({
+                    year,
+                    annuity: jahresAnnuitaet,
+                    interest: yearInterest,
+                    principal: yearPrincipal,
+                    extra: yearExtra,
+                    balance: Math.max(0, balance)
+                });
+
+                // Restschuld nach Zinsbindung
+                if (year === state.zinsbindung) {
+                    restschuldNachBindung = balance;
+                    getilgtNachBindung = P - balance;
+                }
+            }
+
+            return {
+                darlehensbetrag: P,
+                monthlyPayment,
+                totalInterest,
+                totalPayment: totalPrincipal + totalInterest,
+                yearlyData,
+                restschuldNachBindung,
+                getilgtNachBindung,
+                gesamtlaufzeit: yearlyData.length
+            };
+        }
+
+        // ==========================================
+        // === 5. UI UPDATES ===
+        // ==========================================
+
+        function updateDisplays() {
+            // Update slider displays
+            els.displayKaufpreis.textContent = formatEuro(state.kaufpreis);
+            els.displayEigenkapital.textContent = formatEuro(state.eigenkapital);
+            els.displayRate.textContent = formatPercent(state.rate);
+            els.displayZinsbindung.textContent = state.zinsbindung + ' Jahre';
+            els.displayTilgung.textContent = formatPercent(state.tilgung);
+            els.displaySondertilgung.textContent = formatEuro(state.sondertilgung);
+
+            // Eigenkapitalquote
+            const ekQuote = (state.eigenkapital / state.kaufpreis) * 100;
+            els.eigenkapitalQuote.textContent = `Eigenkapitalquote: ${ekQuote.toFixed(1)}%`;
+            els.eigenkapitalQuote.className = ekQuote >= 20 ? 'text-xs text-emerald-400 mt-1' : 'text-xs text-amber-400 mt-1';
+        }
+
+        function updateResults() {
+            const data = calculateLoan();
+            const nebenkosten = calculateNebenkosten();
+
+            // Main outputs
+            els.monthlyPayment.textContent = formatEuroDetailed(data.monthlyPayment);
+            els.darlehensSum.textContent = formatEuro(data.darlehensbetrag);
+            els.totalInterest.textContent = formatEuro(data.totalInterest);
+            els.totalPayment.textContent = formatEuro(data.totalPayment);
+            els.restschuld.textContent = formatEuro(data.restschuldNachBindung);
+            els.restschuldInfo.textContent = `Nach ${state.zinsbindung} Jahren Zinsbindung`;
+            els.getilgtInfo.textContent = `Bereits getilgt: ${formatEuro(data.getilgtNachBindung)}`;
+
+            // Rate info
+            const rateVomNetto = ((data.monthlyPayment / 3000) * 100).toFixed(0); // Beispiel: 3000€ Netto
+            els.rateInfo.textContent = `≈ ${rateVomNetto}% eines Nettos von €3.000`;
+
+            // Visual bars
+            if (data.totalPayment > 0) {
+                const interestPercent = (data.totalInterest / data.totalPayment) * 100;
+                const principalPercent = 100 - interestPercent;
+
+                els.interestBar.style.width = `${interestPercent}%`;
+                els.principalBar.style.width = `${principalPercent}%`;
+                els.interestBar2.style.width = `${interestPercent}%`;
+            }
+
+            // Nebenkosten
+            els.grunderwerbsteuer.textContent = formatEuro(nebenkosten.grunderwerbsteuer);
+            els.grunderwerbsteuerProzent.textContent = `${nebenkosten.grunderwerbsteuerSatz}% vom Kaufpreis`;
+            els.notarkosten.textContent = formatEuro(nebenkosten.notar + nebenkosten.grundbuch);
+            els.maklerkosten.textContent = state.mitMakler ? formatEuro(nebenkosten.makler) : '—';
+            els.nebenkostenGesamt.textContent = formatEuro(nebenkosten.gesamt);
+            els.nebenkostenProzent.textContent = `${nebenkosten.gesamtProzent.toFixed(1)}% vom Kaufpreis`;
+            els.empfohlenesEK.textContent = formatEuro(nebenkosten.gesamt + state.kaufpreis * 0.2);
+
+            // Vergleich
+            updateVergleich(data);
+
+            // Chart & Table
+            updateChart(data);
+            updateTable(data);
+        }
+
+        function updateVergleich(currentData) {
+            // Vergleich mit +1% mehr Tilgung
+            const higherTilgung = Math.min(state.tilgung + 1, 10);
+            const compareData = calculateLoan(higherTilgung);
+
+            els.vergleich1Rate.textContent = formatEuroDetailed(currentData.monthlyPayment) + '/Monat';
+            els.vergleich1Zinsen.textContent = formatEuro(currentData.totalInterest);
+            els.vergleich1Laufzeit.textContent = currentData.gesamtlaufzeit + ' Jahre';
+
+            els.vergleich2Rate.textContent = formatEuroDetailed(compareData.monthlyPayment) + '/Monat';
+            els.vergleich2Zinsen.textContent = formatEuro(compareData.totalInterest);
+            els.vergleich2Laufzeit.textContent = compareData.gesamtlaufzeit + ' Jahre';
+
+            const ersparnis = currentData.totalInterest - compareData.totalInterest;
+            els.vergleichErsparnis.textContent = `💰 Sie sparen: ${formatEuro(ersparnis)} an Zinsen`;
+        }
+
+        // ==========================================
+        // === 6. CHART ===
+        // ==========================================
+
+        function initChart() {
+            const ctx = document.getElementById('amortizationChart').getContext('2d');
+
+            const gradientBlue = ctx.createLinearGradient(0, 0, 0, 300);
+            gradientBlue.addColorStop(0, 'rgba(56, 189, 248, 0.3)');
+            gradientBlue.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+
+            const gradientGreen = ctx.createLinearGradient(0, 0, 0, 300);
+            gradientGreen.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+            gradientGreen.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'Restschuld',
+                            data: [],
+                            borderColor: '#38bdf8',
+                            backgroundColor: gradientBlue,
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Getilgt',
+                            data: [],
+                            borderColor: '#10b981',
+                            backgroundColor: gradientGreen,
+                            borderWidth: 3,
+                            pointRadius: 0,
+                            pointHoverRadius: 6,
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                            titleColor: '#94a3b8',
+                            bodyColor: '#e2e8f0',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: (context) => ` ${context.dataset.label}: ${formatEuro(context.parsed.y)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#64748b', maxRotation: 0 }
+                        },
+                        y: {
+                            grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                            ticks: {
+                                color: '#64748b',
+                                callback: (value) => value >= 1000 ? (value/1000) + 'k' : value
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChart(data) {
+            if (!myChart) return;
+
+            const labels = ['Start', ...data.yearlyData.map(d => `Jahr ${d.year}`)];
+            const balanceData = [data.darlehensbetrag, ...data.yearlyData.map(d => d.balance)];
+            const tilgungData = [0, ...data.yearlyData.map(d => data.darlehensbetrag - d.balance)];
+
+            // Highlight Zinsbindungsende
+            const zinsbindungIndex = state.zinsbindung + 1;
+
+            myChart.data.labels = labels;
+            myChart.data.datasets[0].data = balanceData;
+            myChart.data.datasets[1].data = tilgungData;
+            myChart.update('none');
+        }
+
+        // ==========================================
+        // === 7. TABLE ===
+        // ==========================================
+
+        function updateTable(data) {
+            let html = '';
+
+            data.yearlyData.forEach((row, index) => {
+                const isZinsbindungEnd = row.year === state.zinsbindung;
+                const rowClass = isZinsbindungEnd ? 'bg-amber-500/10 border-l-2 border-amber-500' : '';
+
+                html += `
+                    <tr class="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors ${rowClass}">
+                        <td class="p-3 font-medium ${isZinsbindungEnd ? 'text-amber-400' : 'text-slate-400'}">
+                            ${row.year}${isZinsbindungEnd ? ' ⚡' : ''}
+                        </td>
+                        <td class="p-3 text-slate-300">${formatEuro(row.annuity)}</td>
+                        <td class="p-3 text-rose-300">${formatEuro(row.interest)}</td>
+                        <td class="p-3 text-sky-300">${formatEuro(row.principal)}</td>
+                        <td class="p-3 text-emerald-300">${row.extra > 0 ? formatEuro(row.extra) : '—'}</td>
+                        <td class="p-3 text-right font-bold text-white">${formatEuro(row.balance)}</td>
+                    </tr>
+                `;
+            });
+
+            els.scheduleBody.innerHTML = html;
+        }
+
+        // ==========================================
+        // === 8. TAB NAVIGATION ===
+        // ==========================================
+
+        function initTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active from all
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const tab = btn.dataset.tab;
+
+                    // Show/hide panels
+                    els.chartPanel.classList.toggle('hidden', tab === 'nebenkosten');
+                    els.nebenkostenPanel.classList.toggle('hidden', tab !== 'nebenkosten');
+                    els.vergleichPanel.classList.toggle('hidden', tab !== 'vergleich');
+
+                    if (tab === 'calculator') {
+                        els.chartPanel.classList.remove('hidden');
+                    }
+                });
+            });
+        }
+
+        // ==========================================
+        // === 9. EVENT LISTENERS ===
+        // ==========================================
+
+        function initListeners() {
+            // Slider listeners
+            const sliders = [
+                { el: els.kaufpreis, key: 'kaufpreis' },
+                { el: els.eigenkapital, key: 'eigenkapital' },
+                { el: els.rate, key: 'rate' },
+                { el: els.zinsbindung, key: 'zinsbindung' },
+                { el: els.tilgung, key: 'tilgung' },
+                { el: els.sondertilgung, key: 'sondertilgung' }
+            ];
+
+            sliders.forEach(({ el, key }) => {
+                el.addEventListener('input', (e) => {
+                    state[key] = parseFloat(e.target.value);
+                    updateDisplays();
+                    updateResults();
+                });
+            });
+
+            // Bundesland
+            els.bundesland.addEventListener('change', (e) => {
+                state.bundesland = e.target.value;
+                updateResults();
+            });
+
+            // Toggles
+            els.mitMakler.addEventListener('change', (e) => {
+                state.mitMakler = e.target.checked;
+                updateResults();
+            });
+
+            els.kfwFoerderung.addEventListener('change', (e) => {
+                state.kfwFoerderung = e.target.checked;
+                els.kfwOptions.classList.toggle('hidden', !e.target.checked);
+                updateResults();
+            });
+
+            els.kfwProgramm.addEventListener('change', (e) => {
+                state.kfwProgramm = e.target.value;
+                updateResults();
+            });
+
+            // Export CSV
+            document.getElementById('exportBtn').addEventListener('click', exportCSV);
+        }
+
+        // ==========================================
+        // === 10. EXPORT CSV ===
+        // ==========================================
+
+        function exportCSV() {
+            const data = calculateLoan();
+            let csv = 'Jahr;Jahresrate;Zinsen;Tilgung;Sondertilgung;Restschuld\n';
+
+            data.yearlyData.forEach(row => {
+                csv += `${row.year};${row.annuity.toFixed(2)};${row.interest.toFixed(2)};${row.principal.toFixed(2)};${row.extra.toFixed(2)};${row.balance.toFixed(2)}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'tilgungsplan.csv';
+            link.click();
+        }
+
+        // ==========================================
+        // === 11. PWA INSTALLATION ===
+        // ==========================================
+
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+        const dismissInstall = document.getElementById('dismissInstall');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.classList.remove('hidden');
+        });
+
+        installBtn?.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+
+            if (outcome === 'accepted') {
+                installBanner.classList.add('hidden');
+            }
+            deferredPrompt = null;
+        });
+
+        dismissInstall?.addEventListener('click', () => {
+            installBanner.classList.add('hidden');
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Create inline service worker
+                const swCode = `
+                    const CACHE_NAME = 'finanzplaner-v1';
+                    const urlsToCache = ['./', './index.html'];
+
+                    self.addEventListener('install', (e) => {
+                        e.waitUntil(
+                            caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+                        );
+                        self.skipWaiting();
+                    });
+
+                    self.addEventListener('fetch', (e) => {
+                        e.respondWith(
+                            caches.match(e.request).then((response) => {
+                                return response || fetch(e.request).catch(() => caches.match('./index.html'));
+                            })
+                        );
+                    });
+
+                    self.addEventListener('activate', (e) => {
+                        e.waitUntil(
+                            caches.keys().then((names) => {
+                                return Promise.all(
+                                    names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
+                                );
+                            })
+                        );
+                    });
+                `;
+
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swUrl).then((reg) => {
+                    console.log('✅ Service Worker registered');
+                }).catch((err) => {
+                    console.log('Service Worker registration failed:', err);
+                });
+            });
+        }
+
+        // ==========================================
+        // === 12. INITIALIZATION ===
+        // ==========================================
+
+        window.addEventListener('load', () => {
+            initChart();
+            initTabs();
+            initListeners();
+            updateDisplays();
+            updateResults();
+
+            // Animate numbers on first load
+            document.querySelectorAll('.number-animate').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 300);
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'p' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>
