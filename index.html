@@ -230,32 +230,135 @@
 
         select:focus { outline: none; border-color: var(--primary); }
 
-        /* Toggle */
-        .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
-        .toggle input { opacity: 0; width: 0; height: 0; }
-        .toggle-track {
-            position: absolute;
-            inset: 0;
-            background: var(--bg-tertiary);
-            border-radius: 12px;
+        /* Uiverse.io Toggle */
+        .uiverse-toggle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
             cursor: pointer;
-            transition: background 0.2s;
         }
-        .toggle-track::before {
-            content: '';
+        .uiverse-toggle input {
             position: absolute;
-            width: 18px;
-            height: 18px;
-            left: 3px;
-            top: 3px;
-            background: var(--text-muted);
-            border-radius: 50%;
-            transition: all 0.2s;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
-        .toggle input:checked + .toggle-track { background: var(--primary); }
-        .toggle input:checked + .toggle-track::before {
-            transform: translateX(20px);
-            background: white;
+        .uiverse-toggle-track {
+            width: 52px;
+            height: 52px;
+            background: #fb7185;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(251, 113, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+        .uiverse-toggle-track::after {
+            content: '';
+            width: 44px;
+            height: 44px;
+            background: #f8fafc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease;
+            transform: rotate(-180deg);
+        }
+        .uiverse-toggle input:checked + .uiverse-toggle-track {
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+        .uiverse-toggle input:checked + .uiverse-toggle-track::after {
+            transform: rotate(0deg);
+        }
+        .uiverse-toggle:hover .uiverse-toggle-track::after {
+            transform: scale(0.85) rotate(-180deg);
+        }
+        .uiverse-toggle input:checked + .uiverse-toggle-track:hover::after {
+            transform: scale(0.85) rotate(0deg);
+        }
+        .uiverse-toggle-icon {
+            position: absolute;
+            font-size: 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-bottom: 12px;
+        }
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .accordion-header:active {
+            transform: scale(0.98);
+        }
+        .accordion.open .accordion-header {
+            border-radius: 14px 14px 0 0;
+            border-bottom-color: transparent;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, var(--bg-secondary) 100%);
+        }
+        .accordion-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .accordion-title svg {
+            width: 22px;
+            height: 22px;
+            color: var(--primary);
+        }
+        .accordion-arrow {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+        }
+        .accordion.open .accordion-arrow {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+        }
+        .accordion.open .accordion-content {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll hint area */
+        .scroll-hint {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 10px;
+            opacity: 0.5;
         }
 
         /* Buttons */
@@ -524,122 +627,160 @@
                 </div>
             </div>
 
-            <!-- Inputs -->
-            <div class="card p-5 space-y-5">
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-sm text-slate-300 font-medium">Kaufpreis</span>
-                        <span id="dKaufpreis" class="text-sm font-bold text-emerald-400">300.000 €</span>
+            <!-- Accordion: Kaufdetails -->
+            <div class="accordion open" data-accordion="kaufdetails">
+                <div class="accordion-header" onclick="toggleAccordion('kaufdetails')">
+                    <div class="accordion-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        Kaufdetails
                     </div>
-                    <div class="slider-container">
-                        <div class="slider-track"><div class="slider-fill"></div></div>
-                        <input type="range" id="kaufpreis" min="50000" max="2000000" step="10000" value="300000">
-                    </div>
+                    <svg class="accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </div>
-
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-sm text-slate-300 font-medium">Eigenkapital</span>
-                        <span id="dEigenkapital" class="text-sm font-bold text-emerald-400">60.000 €</span>
-                    </div>
-                    <div class="slider-container">
-                        <div class="slider-track"><div class="slider-fill"></div></div>
-                        <input type="range" id="eigenkapital" min="0" max="1000000" step="5000" value="60000">
-                    </div>
-                    <div class="flex items-center justify-between mt-1">
-                        <span id="ekQuote" class="text-[11px] text-slate-500">Quote: 20%</span>
-                        <span id="ekStatus" class="text-[11px] text-emerald-400 font-medium">Optimal</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
+                <div class="accordion-content space-y-6">
                     <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm text-slate-300 font-medium">Sollzins</span>
-                            <span id="dRate" class="text-sm font-bold text-emerald-400">3,50%</span>
+                        <div class="flex justify-between mb-3">
+                            <span class="text-sm text-slate-300 font-medium">Kaufpreis</span>
+                            <span id="dKaufpreis" class="text-sm font-bold text-emerald-400">300.000 €</span>
                         </div>
                         <div class="slider-container">
                             <div class="slider-track"><div class="slider-fill"></div></div>
-                            <input type="range" id="rate" min="0.5" max="8" step="0.05" value="3.5">
+                            <input type="range" id="kaufpreis" min="50000" max="2000000" step="10000" value="300000">
                         </div>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm text-slate-300 font-medium">Tilgung</span>
-                            <span id="dTilgung" class="text-sm font-bold text-emerald-400">2,00%</span>
+                        <div class="flex justify-between mb-3">
+                            <span class="text-sm text-slate-300 font-medium">Eigenkapital</span>
+                            <span id="dEigenkapital" class="text-sm font-bold text-emerald-400">60.000 €</span>
                         </div>
                         <div class="slider-container">
                             <div class="slider-track"><div class="slider-fill"></div></div>
-                            <input type="range" id="tilgung" min="1" max="10" step="0.1" value="2">
+                            <input type="range" id="eigenkapital" min="0" max="1000000" step="5000" value="60000">
+                        </div>
+                        <div class="flex items-center justify-between mt-2">
+                            <span id="ekQuote" class="text-xs text-slate-500">Quote: 20%</span>
+                            <span id="ekStatus" class="text-xs text-emerald-400 font-medium">Optimal</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm text-slate-300 font-medium">Zinsbindung</span>
-                            <span id="dZinsbindung" class="text-sm font-bold text-emerald-400">15 J</span>
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider-track"><div class="slider-fill"></div></div>
-                            <input type="range" id="zinsbindung" min="5" max="30" step="1" value="15">
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm text-slate-300 font-medium">Sondertilg.</span>
-                            <span id="dSondertilgung" class="text-sm font-bold text-emerald-400">0 €</span>
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider-track"><div class="slider-fill"></div></div>
-                            <input type="range" id="sondertilgung" min="0" max="20000" step="500" value="0">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="text-sm text-slate-300 font-medium block mb-2">Bundesland</label>
-                    <select id="bundesland">
-                        <option value="BW">Baden-Württemberg (5,0%)</option>
-                        <option value="BY">Bayern (3,5%)</option>
-                        <option value="BE">Berlin (6,0%)</option>
-                        <option value="BB">Brandenburg (6,5%)</option>
-                        <option value="HB">Bremen (5,0%)</option>
-                        <option value="HH">Hamburg (5,5%)</option>
-                        <option value="HE">Hessen (6,0%)</option>
-                        <option value="MV">Mecklenburg-Vorpommern (6,0%)</option>
-                        <option value="NI">Niedersachsen (5,0%)</option>
-                        <option value="NW" selected>Nordrhein-Westfalen (6,5%)</option>
-                        <option value="RP">Rheinland-Pfalz (5,0%)</option>
-                        <option value="SL">Saarland (6,5%)</option>
-                        <option value="SN">Sachsen (5,5%)</option>
-                        <option value="ST">Sachsen-Anhalt (5,0%)</option>
-                        <option value="SH">Schleswig-Holstein (6,5%)</option>
-                        <option value="TH">Thüringen (5,0%)</option>
-                    </select>
-                </div>
-
-                <div class="flex items-center justify-between py-2">
-                    <span class="text-sm text-slate-300 font-medium">Maklergebühr (3,57%)</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="mitMakler" checked>
-                        <span class="toggle-track"></span>
-                    </label>
-                </div>
-
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <span class="text-sm text-slate-300 font-medium">Monatl. Netto-Einkommen</span>
-                        <span id="dNetto" class="text-sm font-bold text-slate-400">4.000 €</span>
-                    </div>
-                    <div class="slider-container">
-                        <div class="slider-track"><div class="slider-fill"></div></div>
-                        <input type="range" id="nettoEinkommen" min="1500" max="15000" step="100" value="4000">
-                    </div>
-                    <p class="text-[11px] text-slate-500 mt-1">Für Belastungsquote-Berechnung</p>
                 </div>
             </div>
+
+            <!-- Accordion: Konditionen -->
+            <div class="accordion" data-accordion="konditionen">
+                <div class="accordion-header" onclick="toggleAccordion('konditionen')">
+                    <div class="accordion-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        Konditionen
+                    </div>
+                    <svg class="accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="accordion-content space-y-6">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-sm text-slate-300 font-medium">Sollzins</span>
+                                <span id="dRate" class="text-sm font-bold text-emerald-400">3,50%</span>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-track"><div class="slider-fill"></div></div>
+                                <input type="range" id="rate" min="0.5" max="8" step="0.05" value="3.5">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-sm text-slate-300 font-medium">Tilgung</span>
+                                <span id="dTilgung" class="text-sm font-bold text-emerald-400">2,00%</span>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-track"><div class="slider-fill"></div></div>
+                                <input type="range" id="tilgung" min="1" max="10" step="0.1" value="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5">
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-sm text-slate-300 font-medium">Zinsbindung</span>
+                                <span id="dZinsbindung" class="text-sm font-bold text-emerald-400">15 J</span>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-track"><div class="slider-fill"></div></div>
+                                <input type="range" id="zinsbindung" min="5" max="30" step="1" value="15">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-sm text-slate-300 font-medium">Sondertilg.</span>
+                                <span id="dSondertilgung" class="text-sm font-bold text-emerald-400">0 €</span>
+                            </div>
+                            <div class="slider-container">
+                                <div class="slider-track"><div class="slider-fill"></div></div>
+                                <input type="range" id="sondertilgung" min="0" max="20000" step="500" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion: Einstellungen -->
+            <div class="accordion" data-accordion="einstellungen">
+                <div class="accordion-header" onclick="toggleAccordion('einstellungen')">
+                    <div class="accordion-title">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        Einstellungen
+                    </div>
+                    <svg class="accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="accordion-content space-y-6">
+                    <div>
+                        <label class="text-sm text-slate-300 font-medium block mb-3">Bundesland</label>
+                        <select id="bundesland">
+                            <option value="BW">Baden-Württemberg (5,0%)</option>
+                            <option value="BY">Bayern (3,5%)</option>
+                            <option value="BE">Berlin (6,0%)</option>
+                            <option value="BB">Brandenburg (6,5%)</option>
+                            <option value="HB">Bremen (5,0%)</option>
+                            <option value="HH">Hamburg (5,5%)</option>
+                            <option value="HE">Hessen (6,0%)</option>
+                            <option value="MV">Mecklenburg-Vorpommern (6,0%)</option>
+                            <option value="NI">Niedersachsen (5,0%)</option>
+                            <option value="NW" selected>Nordrhein-Westfalen (6,5%)</option>
+                            <option value="RP">Rheinland-Pfalz (5,0%)</option>
+                            <option value="SL">Saarland (6,5%)</option>
+                            <option value="SN">Sachsen (5,5%)</option>
+                            <option value="ST">Sachsen-Anhalt (5,0%)</option>
+                            <option value="SH">Schleswig-Holstein (6,5%)</option>
+                            <option value="TH">Thüringen (5,0%)</option>
+                        </select>
+                    </div>
+
+                    <!-- Uiverse.io Makler Toggle -->
+                    <div class="flex items-center justify-between py-4 px-4 bg-slate-800/50 rounded-xl">
+                        <div>
+                            <span class="text-sm text-slate-200 font-semibold block">Maklergebühr</span>
+                            <span class="text-xs text-slate-500">3,57% inkl. MwSt.</span>
+                        </div>
+                        <label class="uiverse-toggle">
+                            <input type="checkbox" id="mitMakler" checked>
+                            <div class="uiverse-toggle-track"></div>
+                            <span id="maklerIcon" class="uiverse-toggle-icon">✔️</span>
+                        </label>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-3">
+                            <span class="text-sm text-slate-300 font-medium">Monatl. Netto-Einkommen</span>
+                            <span id="dNetto" class="text-sm font-bold text-slate-400">4.000 €</span>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider-track"><div class="slider-fill"></div></div>
+                            <input type="range" id="nettoEinkommen" min="1500" max="15000" step="100" value="4000">
+                        </div>
+                        <p class="text-xs text-slate-500 mt-2">Für Belastungsquote-Berechnung</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-hint">Zum Scrollen hier ziehen</div>
 
             <!-- Visualization: Donut Chart -->
             <div class="card p-5">
@@ -1146,6 +1287,29 @@
             }).join('');
         }
 
+        // ========== ACCORDION ==========
+        function toggleAccordion(name) {
+            const accordions = document.querySelectorAll('.accordion');
+            accordions.forEach(acc => {
+                if (acc.dataset.accordion === name) {
+                    acc.classList.toggle('open');
+                } else {
+                    acc.classList.remove('open');
+                }
+            });
+            // Update slider fills when accordion opens
+            setTimeout(() => updateAllSliderFills(), 50);
+        }
+
+        // ========== MAKLER TOGGLE ICON ==========
+        function updateMaklerIcon() {
+            const checkbox = document.getElementById('mitMakler');
+            const icon = document.getElementById('maklerIcon');
+            if (icon) {
+                icon.textContent = checkbox.checked ? '✔️' : '✖️';
+            }
+        }
+
         // ========== NAVIGATION ==========
         function initNav() {
             document.querySelectorAll('.nav-item').forEach(btn => {
@@ -1179,6 +1343,7 @@
             document.getElementById('nettoEinkommen').value=state.netto;
             // Update all slider fill bars after syncing values
             if (typeof updateAllSliderFills === 'function') updateAllSliderFills();
+            if (typeof updateMaklerIcon === 'function') updateMaklerIcon();
         }
 
         // ========== MODALS & TOAST ==========
@@ -1262,7 +1427,7 @@
                 });
             });
             document.getElementById('bundesland').addEventListener('change', e => { state.bundesland=e.target.value; updateUI(); });
-            document.getElementById('mitMakler').addEventListener('change', e => { state.mitMakler=e.target.checked; updateUI(); });
+            document.getElementById('mitMakler').addEventListener('change', e => { state.mitMakler=e.target.checked; updateMaklerIcon(); updateUI(); });
         }
 
         // ========== INIT ==========
@@ -1275,6 +1440,7 @@
             if(saved) { Object.assign(state, JSON.parse(saved)); sync(); }
             updateUI();
             updateAllSliderFills();
+            updateMaklerIcon();
             updateLastSaved();
         });
 
