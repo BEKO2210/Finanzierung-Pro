@@ -12,8 +12,9 @@
 
     <title>FinanzPlaner Pro | Baufinanzierungsrechner</title>
 
-    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22FinanzPlaner%20Pro%22%2C%22short_name%22%3A%22FinanzPlaner%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%2520viewBox%3D%270%25200%2520512%2520512%27%253E%253Crect%2520fill%3D%27%25230f172a%27%2520width%3D%27512%27%2520height%3D%27512%27%2520rx%3D%2796%27%2F%253E%253Ctext%2520x%3D%27256%27%2520y%3D%27360%27%2520font-size%3D%27320%27%2520font-family%3D%27system-ui%27%2520text-anchor%3D%27middle%27%2520fill%3D%27%252310b981%27%253E%25E2%2582%25AC%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f172a' width='100' height='100' rx='18'/><text x='50' y='72' font-size='58' font-family='system-ui' text-anchor='middle' fill='%2310b981'>€</text></svg>">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+    <link rel="apple-touch-icon" href="./icon-192.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1146,7 +1147,7 @@
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt=e; document.getElementById('installBtn').classList.add('show'); });
         function installPWA() { if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBtn').classList.remove('show');});} }
-        if('serviceWorker' in navigator) { const sw=`const C='fp-v3';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])));self.skipWaiting()});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match('./'))))});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))))})`; navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{}); }
+        if('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').then(reg => console.log('SW registered')).catch(err => console.log('SW error:', err)); }
 
         // ========== LISTENERS ==========
         function initListeners() {
